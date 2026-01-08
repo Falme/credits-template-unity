@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace FalmeStreamless.Credits
 {
     [System.Serializable]
@@ -16,6 +14,7 @@ namespace FalmeStreamless.Credits
         public bool title;
         public bool category;
         public string[] actors;
+        public int space;
     }
 
 }

@@ -11,18 +11,28 @@ namespace FalmeStreamless.Credits
         [SerializeField] private Transform creditsScroll;
 
         [Header("Elements/Prefabs")]
-        [SerializeField] private GameObject creditsStart;
-        [SerializeField] private GameObject creditsEnd;
-        
+        [SerializeField] private GameObject start;
+        [SerializeField] private GameObject end;
+        [SerializeField] private GameObject spacing;
+
         private CreditsData data;
 
         void Start()
         {
             SerializeJsonData();
             CreateStartPoint();
-            for(int a=0; a<data.credits.Length; a++)
+            for (int a = 0; a < data.credits.Length; a++)
             {
-                CreateLabel(data.credits[a]);
+                if (data.credits[a].space > 0)
+                {
+                    GameObject g = GameObject.Instantiate(spacing, creditsScroll);
+                    ICreditsItem item = g.GetComponent<ICreditsItem>();
+                    item.AutoConfigure(data.credits[a]);
+                }
+                else
+                {
+                    CreateLabel(data.credits[a]);
+                }
             }
             CreateEndPoint();
         }
@@ -34,19 +44,19 @@ namespace FalmeStreamless.Credits
 
         private void CreateStartPoint()
         {
-            GameObject.Instantiate(creditsStart, creditsScroll);
+            GameObject.Instantiate(start, creditsScroll);
         }
 
         private void CreateEndPoint()
         {
-            GameObject.Instantiate(creditsEnd, creditsScroll);
+            GameObject.Instantiate(end, creditsScroll);
         }
 
         private void CreateLabel(CreditsItem item)
         {
-            for(int a=0; a<item.actors.Length; a++)
+            if (item.actors == null) return;
+            for (int a = 0; a < item.actors.Length; a++)
                 Debug.Log(item.actors[a]);
         }
     }
-
 }
