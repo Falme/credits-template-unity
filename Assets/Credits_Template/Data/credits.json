@@ -1,0 +1,17 @@
+{
+    "version": "0.0.1",
+    "credits": [
+        {"label": "Director", "category": true, "actors": [
+            "Aya Kyogoku",
+            "John Doe",
+            "Jane Doe"
+        ]},
+        {"label": "Director", "category": true, "actors": [
+            "Aya Kyogoku",
+            "John Doe",
+            "Jane Doe"
+        ]},
+        {"label": "Animal Crossing : New Horizons\nDevelopment Staff", "title": true},
+        {"label": "", "space": 10}
+    ]
+}
