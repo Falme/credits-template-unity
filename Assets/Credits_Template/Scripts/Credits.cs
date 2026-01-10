@@ -1,42 +1,57 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 namespace FalmeStreamless.Credits
 {
+    [ExecuteAlways]
     public class Credits : MonoBehaviour
     {
+        public static event Action creditsFinishedEvent;
+
         [Header("All Credits Data")]
         [SerializeField] private TextAsset creditsJSON;
-
-        [Header("Transforms/UI")]
-        [SerializeField] private Transform creditsScroll;
 
         [Header("Elements/Prefabs")]
         [SerializeField] private GameObject start;
         [SerializeField] private GameObject end;
         [SerializeField] private GameObject spacing;
 
+        [Header("References")]
+        [SerializeReference] private CreditsScroll creditsScroll;
+        [SerializeReference] private CreditsEnd creditsEnd;
+
+        private CanvasScaler canvasScaler;
         private CreditsData data;
+
+        void Awake()
+        {
+            canvasScaler = GetComponent<CanvasScaler>();
+        }
+
+        void OnEnable()
+        {
+            CreditsEnd.onCreditEndReached += CreditEndReached;
+        }
+
+        void OnDisable()
+        {
+            CreditsEnd.onCreditEndReached -= CreditEndReached;
+        }
 
         void Start()
         {
-            SerializeJsonData();
-            CreateStartPoint();
-            for (int a = 0; a < data.credits.Length; a++)
-            {
-                if (data.credits[a].space > 0)
-                {
-                    GameObject g = GameObject.Instantiate(spacing, creditsScroll);
-                    ICreditsItem item = g.GetComponent<ICreditsItem>();
-                    item.AutoConfigure(data.credits[a]);
-                }
-                else
-                {
-                    CreateLabel(data.credits[a]);
-                }
-            }
-            CreateEndPoint();
+            creditsScroll.Initialize(canvasScaler.referenceResolution);
         }
 
+        void CreditEndReached(float difference)
+        {
+            creditsScroll.StopScrolling();
+            creditsScroll.ScrollAdd(-difference); // Fix Overshot position
+            creditsFinishedEvent?.Invoke();
+        }
+
+        // Still not used functions
         private void SerializeJsonData()
         {
             data = JsonUtility.FromJson<CreditsData>(creditsJSON.text);
@@ -44,12 +59,12 @@ namespace FalmeStreamless.Credits
 
         private void CreateStartPoint()
         {
-            GameObject.Instantiate(start, creditsScroll);
+            // GameObject.Instantiate(start, creditsScroll);
         }
 
         private void CreateEndPoint()
         {
-            GameObject.Instantiate(end, creditsScroll);
+            // GameObject.Instantiate(end, creditsScroll);
         }
 
         private void CreateLabel(CreditsItem item)
