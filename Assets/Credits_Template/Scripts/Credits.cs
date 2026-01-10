@@ -11,6 +11,7 @@ namespace FalmeStreamless.Credits
 
         [Header("Transforms/UI")]
         [SerializeField] private RectTransform creditsScroll;
+        [SerializeField] private RectTransform endScroll;
 
         [Header("Elements/Prefabs")]
         [SerializeField] private GameObject start;
@@ -32,22 +33,7 @@ namespace FalmeStreamless.Credits
 
         void Start()
         {
-            SerializeJsonData();
-            CreateStartPoint();
-            for (int a = 0; a < data.credits.Length; a++)
-            {
-                if (data.credits[a].space > 0)
-                {
-                    GameObject g = GameObject.Instantiate(spacing, creditsScroll);
-                    ICreditsItem item = g.GetComponent<ICreditsItem>();
-                    item.AutoConfigure(data.credits[a]);
-                }
-                else
-                {
-                    CreateLabel(data.credits[a]);
-                }
-            }
-            CreateEndPoint();
+            ScrollToStart();
             StartScrolling();
         }
 
@@ -55,6 +41,9 @@ namespace FalmeStreamless.Credits
         {
             if (isScrolling)
                 Scroll(Time.deltaTime);
+
+            if (endScroll.position.y > Screen.height)
+                StopScrolling();
         }
 
         public void ScrollToStart()

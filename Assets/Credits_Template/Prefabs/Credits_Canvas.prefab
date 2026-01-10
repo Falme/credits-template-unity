@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.Credits
   creditsJSON: {fileID: 0}
   creditsScroll: {fileID: 2037135442582790921}
+  endScroll: {fileID: 0}
   start: {fileID: 0}
   end: {fileID: 0}
   spacing: {fileID: 0}
