@@ -6,7 +6,7 @@ namespace FalmeStreamless.Credits
     [ExecuteAlways]
     public class CreditsEnd : MonoBehaviour
     {
-        public static event Action onCreditEndReached;
+        public static event Action<float> onCreditEndReached;
 
         private RectTransform rectTransform;
 
@@ -18,7 +18,7 @@ namespace FalmeStreamless.Credits
         void Update()
         {
             if (hasReachedTopBorder())
-                onCreditEndReached?.Invoke();
+                onCreditEndReached?.Invoke(rectTransform.position.y - Screen.height);
         }
 
         public bool hasReachedTopBorder() => rectTransform.position.y > Screen.height;

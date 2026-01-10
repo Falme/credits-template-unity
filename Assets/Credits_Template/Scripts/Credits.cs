@@ -44,9 +44,10 @@ namespace FalmeStreamless.Credits
             creditsScroll.Initialize(canvasScaler.referenceResolution);
         }
 
-        void CreditEndReached()
+        void CreditEndReached(float difference)
         {
             creditsScroll.StopScrolling();
+            creditsScroll.ScrollAdd(-difference); // Fix Overshot position
             creditsFinishedEvent?.Invoke();
         }
 
