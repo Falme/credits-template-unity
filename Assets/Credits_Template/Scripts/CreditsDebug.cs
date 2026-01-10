@@ -1,45 +1,28 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 namespace FalmeStreamless.Credits
 {
 
-    [CustomEditor(typeof(Credits))]
+    [CustomEditor(typeof(CreditsScroll))]
     public class CreditsDebug : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            Credits credits = (Credits)target;
-            if (GUILayout.Button("Scroll 100px"))
-            {
-                credits.ScrollTo(100);
-            }
-            if (GUILayout.Button("Scroll 500px"))
-            {
-                credits.ScrollTo(500);
-            }
+            CreditsScroll creditsScroll = (CreditsScroll)target;
             if (GUILayout.Button("Scroll Start"))
             {
-                credits.ScrollToStart();
-                credits.StartScrolling();
+                Vector2 res = creditsScroll.GetComponentInParent<CanvasScaler>().referenceResolution;
+                creditsScroll.ScrollToStart(res);
+                creditsScroll.StartScrolling();
             }
             if (GUILayout.Button("Scroll Stop"))
             {
-                credits.StopScrolling();
+                creditsScroll.StopScrolling();
             }
-        }
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
