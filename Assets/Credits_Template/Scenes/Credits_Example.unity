@@ -527,6 +527,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3040994935268083797, guid: 3b91a1ddf21876a5c8ae88bc64bbf212, type: 3}
   m_PrefabInstance: {fileID: 707347698}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &707347700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3538089431375326276, guid: 3b91a1ddf21876a5c8ae88bc64bbf212, type: 3}
+  m_PrefabInstance: {fileID: 707347698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c65922333186f948f24c6edf8c0445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsEnd
 --- !u!1001 &799175828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1515,6 +1526,10 @@ PrefabInstance:
       propertyPath: endScroll
       value: 
       objectReference: {fileID: 707347699}
+    - target: {fileID: 1047206877003201781, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
+      propertyPath: creditsEnd
+      value: 
+      objectReference: {fileID: 707347700}
     - target: {fileID: 1580639194636404732, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1553,7 +1568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037135442582790921, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 663.80865
+      value: 677.3481
       objectReference: {fileID: 0}
     - target: {fileID: 2125064503357142899, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
       propertyPath: m_AnchorMax.y

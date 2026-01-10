@@ -12,9 +12,6 @@ namespace FalmeStreamless.Credits
         [Header("All Credits Data")]
         [SerializeField] private TextAsset creditsJSON;
 
-        [Header("Transforms/UI")]
-        [SerializeField] private RectTransform endScroll;
-
         [Header("Elements/Prefabs")]
         [SerializeField] private GameObject start;
         [SerializeField] private GameObject end;
@@ -22,6 +19,7 @@ namespace FalmeStreamless.Credits
 
         [Header("References")]
         [SerializeReference] private CreditsScroll creditsScroll;
+        [SerializeReference] private CreditsEnd creditsEnd;
 
         private CanvasScaler canvasScaler;
         private CreditsData data;
@@ -31,18 +29,25 @@ namespace FalmeStreamless.Credits
             canvasScaler = GetComponent<CanvasScaler>();
         }
 
+        void OnEnable()
+        {
+            CreditsEnd.onCreditEndReached += CreditEndReached;
+        }
+
+        void OnDisable()
+        {
+            CreditsEnd.onCreditEndReached -= CreditEndReached;
+        }
+
         void Start()
         {
             creditsScroll.Initialize(canvasScaler.referenceResolution);
         }
 
-        void Update()
+        void CreditEndReached()
         {
-            if (endScroll.position.y > Screen.height)
-            {
-                creditsScroll.StopScrolling();
-                creditsFinishedEvent?.Invoke();
-            }
+            creditsScroll.StopScrolling();
+            creditsFinishedEvent?.Invoke();
         }
 
         // Still not used functions
