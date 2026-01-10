@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace FalmeStreamless.Credits
 {
     [ExecuteAlways]
     public class Credits : MonoBehaviour
     {
+        public static event Action creditsFinishedEvent;
+
         [Header("All Credits Data")]
         [SerializeField] private TextAsset creditsJSON;
 
@@ -43,7 +46,10 @@ namespace FalmeStreamless.Credits
                 Scroll(Time.deltaTime);
 
             if (endScroll.position.y > Screen.height)
+            {
                 StopScrolling();
+                creditsFinishedEvent?.Invoke();
+            }
         }
 
         public void ScrollToStart()
