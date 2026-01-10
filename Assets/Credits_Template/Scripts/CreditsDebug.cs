@@ -23,6 +23,11 @@ namespace FalmeStreamless.Credits
             if (GUILayout.Button("Scroll Start"))
             {
                 credits.ScrollToStart();
+                credits.StartScrolling();
+            }
+            if (GUILayout.Button("Scroll Stop"))
+            {
+                credits.StopScrolling();
             }
         }
         // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace FalmeStreamless.Credits
 {
+    [ExecuteAlways]
     public class Credits : MonoBehaviour
     {
         [Header("All Credits Data")]
@@ -16,8 +17,13 @@ namespace FalmeStreamless.Credits
         [SerializeField] private GameObject end;
         [SerializeField] private GameObject spacing;
 
+        [Header("Scrolling info")]
+        [SerializeField] private float scrollVelocity;
+
         private CanvasScaler canvasScaler;
         private CreditsData data;
+
+        private bool isScrolling = false;
 
         void Awake()
         {
@@ -42,6 +48,13 @@ namespace FalmeStreamless.Credits
                 }
             }
             CreateEndPoint();
+            StartScrolling();
+        }
+
+        void Update()
+        {
+            if (isScrolling)
+                Scroll(Time.deltaTime);
         }
 
         public void ScrollToStart()
@@ -55,6 +68,21 @@ namespace FalmeStreamless.Credits
         public void ScrollTo(float y)
         {
             creditsScroll.anchoredPosition = new Vector2(0, y);
+        }
+
+        public void Scroll(float delta)
+        {
+            ScrollTo(creditsScroll.anchoredPosition.y + (scrollVelocity * delta));
+        }
+
+        public void StartScrolling()
+        {
+            isScrolling = true;
+        }
+
+        public void StopScrolling()
+        {
+            isScrolling = false;
         }
 
         private void SerializeJsonData()

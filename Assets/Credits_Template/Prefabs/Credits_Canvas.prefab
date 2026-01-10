@@ -251,3 +251,4 @@ MonoBehaviour:
   start: {fileID: 0}
   end: {fileID: 0}
   spacing: {fileID: 0}
+  scrollVelocity: 100
