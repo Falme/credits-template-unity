@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FalmeStreamless.Credits
 {
@@ -8,14 +9,20 @@ namespace FalmeStreamless.Credits
         [SerializeField] private TextAsset creditsJSON;
 
         [Header("Transforms/UI")]
-        [SerializeField] private Transform creditsScroll;
+        [SerializeField] private RectTransform creditsScroll;
 
         [Header("Elements/Prefabs")]
         [SerializeField] private GameObject start;
         [SerializeField] private GameObject end;
         [SerializeField] private GameObject spacing;
 
+        private CanvasScaler canvasScaler;
         private CreditsData data;
+
+        void Awake()
+        {
+            canvasScaler = GetComponent<CanvasScaler>();
+        }
 
         void Start()
         {
@@ -35,6 +42,19 @@ namespace FalmeStreamless.Credits
                 }
             }
             CreateEndPoint();
+        }
+
+        public void ScrollToStart()
+        {
+            if (canvasScaler == null) canvasScaler = GetComponent<CanvasScaler>();
+
+            float y = -canvasScaler.referenceResolution.y;
+            creditsScroll.anchoredPosition = new Vector2(0, y);
+        }
+
+        public void ScrollTo(float y)
+        {
+            creditsScroll.anchoredPosition = new Vector2(0, y);
         }
 
         private void SerializeJsonData()

@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 2886133442213204141}
   - component: {fileID: 2411260765088240560}
   - component: {fileID: 3997538256327986855}
+  - component: {fileID: 1047206877003201781}
   m_Layer: 5
   m_Name: Credits_Canvas
   m_TagString: Untagged
@@ -233,3 +234,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1047206877003201781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8515615087025711151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85968730c01efc1c4b96eb6bd44d57f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.Credits
+  creditsJSON: {fileID: 0}
+  creditsScroll: {fileID: 2037135442582790921}
+  start: {fileID: 0}
+  end: {fileID: 0}
+  spacing: {fileID: 0}
