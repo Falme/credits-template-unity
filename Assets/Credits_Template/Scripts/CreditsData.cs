@@ -5,6 +5,7 @@ namespace FalmeStreamless.Credits
     {
         public string version;
         public float velocity;
+        public string title;
         public CreditsItem[] credits;
     }
 

@@ -5,12 +5,10 @@ namespace FalmeStreamless.Credits
     [ExecuteAlways]
     public class CreditsScroll : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private CreditsStaff creditsStaff;
+
         private float scrollVelocity;
-
-        [Header("Prefab Items")]
-        private GameObject itemTitle;
-
-        private CreditsData data;
         private RectTransform rectTransform;
         private bool isScrolling = false;
 
@@ -21,7 +19,6 @@ namespace FalmeStreamless.Credits
 
         public void Initialize(Vector2 resolution, CreditsData data)
         {
-            this.data = data;
             FillCreditsData(data);
             ScrollToStart(resolution);
             StartScrolling();
@@ -36,6 +33,7 @@ namespace FalmeStreamless.Credits
         private void FillCreditsData(CreditsData data)
         {
             scrollVelocity = data.velocity;
+            creditsStaff.Initialize(data);
         }
 
         public void Scroll(float delta)

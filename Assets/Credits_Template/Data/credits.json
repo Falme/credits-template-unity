@@ -1,6 +1,7 @@
 {
     "version": "0.0.1",
     "velocity": 300,
+	"title": "Animal Crossing : New Horizons\nDevelopment Staff",
     "credits": [
         {"label": "Animal Crossing : New Horizons\nDevelopment Staff", "title": true},
         {"label": "", "space": 10},
