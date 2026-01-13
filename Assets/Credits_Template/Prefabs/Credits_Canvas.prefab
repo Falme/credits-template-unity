@@ -348,9 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85968730c01efc1c4b96eb6bd44d57f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.Credits
-  creditsJSON: {fileID: 0}
-  start: {fileID: 0}
-  end: {fileID: 0}
+  creditsJSON: {fileID: 4900000, guid: 231ad6d40917e05f9af7d437b839b984, type: 3}
   spacing: {fileID: 0}
   creditsScroll: {fileID: 5567626421056190533}
   creditsEnd: {fileID: 6126727769261154660}

@@ -13,8 +13,6 @@ namespace FalmeStreamless.Credits
         [SerializeField] private TextAsset creditsJSON;
 
         [Header("Elements/Prefabs")]
-        [SerializeField] private GameObject start;
-        [SerializeField] private GameObject end;
         [SerializeField] private GameObject spacing;
 
         [Header("References")]
@@ -41,7 +39,10 @@ namespace FalmeStreamless.Credits
 
         void Start()
         {
-            creditsScroll.Initialize(canvasScaler.referenceResolution);
+            creditsScroll.Initialize(
+                canvasScaler.referenceResolution,
+                GetJsonData()
+                );
         }
 
         void CreditEndReached(float difference)
@@ -51,27 +52,11 @@ namespace FalmeStreamless.Credits
             creditsFinishedEvent?.Invoke();
         }
 
-        // Still not used functions
-        private void SerializeJsonData()
+        private CreditsData GetJsonData()
         {
-            data = JsonUtility.FromJson<CreditsData>(creditsJSON.text);
+            return JsonUtility.FromJson<CreditsData>(creditsJSON.text);
         }
 
-        private void CreateStartPoint()
-        {
-            // GameObject.Instantiate(start, creditsScroll);
-        }
-
-        private void CreateEndPoint()
-        {
-            // GameObject.Instantiate(end, creditsScroll);
-        }
-
-        private void CreateLabel(CreditsItem item)
-        {
-            if (item.actors == null) return;
-            for (int a = 0; a < item.actors.Length; a++)
-                Debug.Log(item.actors[a]);
-        }
     }
 }
+
