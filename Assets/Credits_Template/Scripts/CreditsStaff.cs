@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace FalmeStreamless.Credits
 {
@@ -13,7 +14,7 @@ namespace FalmeStreamless.Credits
         {
             ClearStaff();
             WriteTitle(data.title);
-            WriteStaff(data.labels);
+            StartCoroutine(WriteStaff(data.labels));
         }
 
         private void ClearStaff()
@@ -28,14 +29,18 @@ namespace FalmeStreamless.Credits
             label.SetText(title);
         }
 
-        private void WriteStaff(string[,] labels)
+        private IEnumerator WriteStaff(string[,] labels)
         {
             for (int category = 0; category < labels.GetLength(0); category++)
             {
                 WriteCategory(labels[category, 0]);
+                yield return null;
 
                 for (int label = 1; label < labels.GetLength(1); label++)
+                {
                     WriteActor(labels[category, label]);
+                    yield return null;
+                }
             }
         }
 
