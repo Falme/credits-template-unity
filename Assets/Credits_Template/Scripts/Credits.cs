@@ -13,11 +13,8 @@ namespace FalmeStreamless.Credits
         [Header("All Credits Data")]
         [SerializeField] private TextAsset creditsJSON;
 
-        [Header("Elements/Prefabs")]
-        [SerializeField] private GameObject spacing;
-
         [Header("References")]
-        [SerializeReference] private CreditsScroll creditsScroll;
+        [SerializeReference] private Scroll scroll;
         [SerializeReference] private CreditsEnd creditsEnd;
 
         private CanvasScaler canvasScaler;
@@ -40,7 +37,7 @@ namespace FalmeStreamless.Credits
 
         void Start()
         {
-            creditsScroll.Initialize(
+            scroll.Initialize(
                 canvasScaler.referenceResolution,
                 GetJsonData()
                 );
@@ -48,8 +45,8 @@ namespace FalmeStreamless.Credits
 
         void CreditEndReached(float difference)
         {
-            creditsScroll.StopScrolling();
-            creditsScroll.ScrollAdd(-difference); // Fix Overshot position
+            scroll.StopScrolling();
+            scroll.ScrollAdd(-difference); // Fix Overshot position
             creditsFinishedEvent?.Invoke();
         }
 

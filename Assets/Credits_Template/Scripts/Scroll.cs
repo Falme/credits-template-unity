@@ -3,7 +3,7 @@ using UnityEngine;
 namespace FalmeStreamless.Credits
 {
     [ExecuteAlways]
-    public class CreditsScroll : MonoBehaviour
+    public class Scroll : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Staff staff;
@@ -27,7 +27,7 @@ namespace FalmeStreamless.Credits
         void Update()
         {
             if (isScrolling)
-                Scroll(Time.deltaTime);
+                ScrollCredits(Time.deltaTime);
         }
 
         private void FillCreditsData(CreditsData data)
@@ -36,7 +36,7 @@ namespace FalmeStreamless.Credits
             staff.Initialize(data);
         }
 
-        public void Scroll(float delta)
+        public void ScrollCredits(float delta)
         {
             ScrollAdd(scrollVelocity * delta);
         }

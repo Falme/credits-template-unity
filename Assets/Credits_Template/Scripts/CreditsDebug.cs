@@ -5,23 +5,23 @@ using UnityEditor;
 namespace FalmeStreamless.Credits
 {
 
-    [CustomEditor(typeof(CreditsScroll))]
+    [CustomEditor(typeof(Scroll))]
     public class CreditsDebug : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            CreditsScroll creditsScroll = (CreditsScroll)target;
+            Scroll scroll = (Scroll)target;
             if (GUILayout.Button("Scroll Start"))
             {
-                Vector2 res = creditsScroll.GetComponentInParent<CanvasScaler>().referenceResolution;
-                creditsScroll.ScrollToStart(res);
-                creditsScroll.StartScrolling();
+                Vector2 res = scroll.GetComponentInParent<CanvasScaler>().referenceResolution;
+                scroll.ScrollToStart(res);
+                scroll.StartScrolling();
             }
             if (GUILayout.Button("Scroll Stop"))
             {
-                creditsScroll.StopScrolling();
+                scroll.StopScrolling();
             }
         }
     }

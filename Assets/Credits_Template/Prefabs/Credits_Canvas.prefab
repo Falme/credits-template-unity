@@ -517,7 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.Credits
   creditsJSON: {fileID: 4900000, guid: 231ad6d40917e05f9af7d437b839b984, type: 3}
   spacing: {fileID: 0}
-  creditsScroll: {fileID: 5567626421056190533}
+  scroll: {fileID: 5567626421056190533}
   creditsEnd: {fileID: 6126727769261154660}
 --- !u!1001 &7214577373749284128
 PrefabInstance:
