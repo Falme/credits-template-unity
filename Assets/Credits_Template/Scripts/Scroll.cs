@@ -3,10 +3,12 @@ using UnityEngine;
 namespace FalmeStreamless.Credits
 {
     [ExecuteAlways]
-    public class CreditsScroll : MonoBehaviour
+    public class Scroll : MonoBehaviour
     {
-        [SerializeField] private float scrollVelocity;
+        [Header("References")]
+        [SerializeField] private Staff staff;
 
+        private float scrollVelocity;
         private RectTransform rectTransform;
         private bool isScrolling = false;
 
@@ -15,8 +17,9 @@ namespace FalmeStreamless.Credits
             rectTransform = GetComponent<RectTransform>();
         }
 
-        public void Initialize(Vector2 resolution)
+        public void Initialize(Vector2 resolution, CreditsData data)
         {
+            FillCreditsData(data);
             ScrollToStart(resolution);
             StartScrolling();
         }
@@ -24,10 +27,16 @@ namespace FalmeStreamless.Credits
         void Update()
         {
             if (isScrolling)
-                Scroll(Time.deltaTime);
+                ScrollCredits(Time.deltaTime);
         }
 
-        public void Scroll(float delta)
+        private void FillCreditsData(CreditsData data)
+        {
+            scrollVelocity = data.velocity;
+            staff.Initialize(data);
+        }
+
+        public void ScrollCredits(float delta)
         {
             ScrollAdd(scrollVelocity * delta);
         }
