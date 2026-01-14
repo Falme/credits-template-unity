@@ -9,12 +9,13 @@ namespace FalmeStreamless.Credits
         [SerializeField] private GameObject itemTitle;
         [SerializeField] private GameObject itemCategory;
         [SerializeField] private GameObject itemActor;
+        [SerializeField] private GameObject itemSpacing;
 
         public void Initialize(CreditsData data)
         {
             ClearStaff();
             WriteTitle(data.title);
-            StartCoroutine(WriteStaff(data.labels));
+            StartCoroutine(WriteStaff(data.items));
         }
 
         private void ClearStaff()
@@ -29,31 +30,33 @@ namespace FalmeStreamless.Credits
             label.SetText(title);
         }
 
-        private IEnumerator WriteStaff(string[,] labels)
+        private IEnumerator WriteStaff(CreditsItem[] items)
         {
-            for (int category = 0; category < labels.GetLength(0); category++)
+            for (int item = 0; item < items.Length; item++)
             {
-                WriteCategory(labels[category, 0]);
+                if (items[item].category) WriteCategory(items[item]);
+                if (items[item].actor) WriteActor(items[item]);
+                if (items[item].space) WriteSpacing(items[item]);
                 yield return null;
-
-                for (int label = 1; label < labels.GetLength(1); label++)
-                {
-                    WriteActor(labels[category, label]);
-                    yield return null;
-                }
             }
         }
 
-        private void WriteCategory(string category)
+        private void WriteCategory(CreditsItem category)
         {
             ItemLabel label = Instantiate(itemCategory, transform).GetComponent<ItemLabel>();
-            label.SetText(category);
+            label.SetText(category.text);
         }
 
-        private void WriteActor(string actor)
+        private void WriteActor(CreditsItem actor)
         {
             ItemLabel label = Instantiate(itemActor, transform).GetComponent<ItemLabel>();
-            label.SetText(actor);
+            label.SetText(actor.text);
+        }
+
+        private void WriteSpacing(CreditsItem spacing)
+        {
+            ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
+            space.AutoConfigure(spacing);
         }
     }
 }
