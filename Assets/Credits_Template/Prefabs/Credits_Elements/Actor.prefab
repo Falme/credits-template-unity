@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2663961029437495767}
   - component: {fileID: 3780574995841091236}
   - component: {fileID: 4171308643596332019}
+  - component: {fileID: 7045183364184536585}
   m_Layer: 5
   m_Name: Actor
   m_TagString: Untagged
@@ -158,3 +159,15 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
+--- !u!114 &7045183364184536585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446669124646836184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7280888e75ece5ea8e8dbef52c17331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.ItemLabel

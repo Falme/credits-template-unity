@@ -7,6 +7,7 @@ namespace FalmeStreamless.Credits
         public float velocity;
         public string title;
         public CreditsItem[] credits;
+        public string[,] labels;
     }
 
     [System.Serializable]

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Newtonsoft.Json;
 
 namespace FalmeStreamless.Credits
 {
@@ -54,7 +55,7 @@ namespace FalmeStreamless.Credits
 
         private CreditsData GetJsonData()
         {
-            return JsonUtility.FromJson<CreditsData>(creditsJSON.text);
+            return JsonConvert.DeserializeObject<CreditsData>(creditsJSON.text);
         }
 
     }
