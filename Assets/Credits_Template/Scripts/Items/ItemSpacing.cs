@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace FalmeStreamless.Credits
 {
-    public class ItemSpacing : MonoBehaviour, ICreditsItem
+    public class ItemSpacing : MonoBehaviour
     {
         private LayoutElement layoutElement;
 
@@ -14,7 +14,7 @@ namespace FalmeStreamless.Credits
 
         public void AutoConfigure(CreditsItem item)
         {
-            layoutElement.preferredHeight = item.space;
+            layoutElement.preferredHeight = item.height;
         }
     }
 }
