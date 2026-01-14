@@ -15,7 +15,6 @@ namespace FalmeStreamless.Credits
 
         [Header("References")]
         [SerializeReference] private Scroll scroll;
-        [SerializeReference] private CreditsEnd creditsEnd;
 
         private CanvasScaler canvasScaler;
         private CreditsData data;
@@ -27,12 +26,12 @@ namespace FalmeStreamless.Credits
 
         void OnEnable()
         {
-            CreditsEnd.onCreditEndReached += CreditEndReached;
+            End.onCreditEndReached += CreditEndReached;
         }
 
         void OnDisable()
         {
-            CreditsEnd.onCreditEndReached -= CreditEndReached;
+            End.onCreditEndReached -= CreditEndReached;
         }
 
         void Start()
