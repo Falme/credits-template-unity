@@ -6,7 +6,7 @@ namespace FalmeStreamless.Credits
     public class CreditsScroll : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private CreditsStaff creditsStaff;
+        [SerializeField] private Staff staff;
 
         private float scrollVelocity;
         private RectTransform rectTransform;
@@ -33,7 +33,7 @@ namespace FalmeStreamless.Credits
         private void FillCreditsData(CreditsData data)
         {
             scrollVelocity = data.velocity;
-            creditsStaff.Initialize(data);
+            staff.Initialize(data);
         }
 
         public void Scroll(float delta)

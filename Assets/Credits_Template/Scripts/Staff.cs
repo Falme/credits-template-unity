@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace FalmeStreamless.Credits
 {
-    public class CreditsStaff : MonoBehaviour
+    public class Staff : MonoBehaviour
     {
         [Header("Prefab Items")]
         [SerializeField] private GameObject itemTitle;

@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e275e411d75f1a8f81b67ca44c9bb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.CreditsScroll
-  creditsStaff: {fileID: 4961911359070107974}
+  staff: {fileID: 4961911359070107974}
 --- !u!1 &8515615087025711151
 GameObject:
   m_ObjectHideFlags: 0
