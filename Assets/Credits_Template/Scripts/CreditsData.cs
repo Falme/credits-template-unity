@@ -4,7 +4,10 @@ namespace FalmeStreamless.Credits
     public class CreditsData
     {
         public string version;
+        public float velocity;
+        public string title;
         public CreditsItem[] credits;
+        public string[,] labels;
     }
 
     [System.Serializable]

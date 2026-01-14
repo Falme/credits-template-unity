@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Newtonsoft.Json;
 
 namespace FalmeStreamless.Credits
 {
@@ -12,14 +13,8 @@ namespace FalmeStreamless.Credits
         [Header("All Credits Data")]
         [SerializeField] private TextAsset creditsJSON;
 
-        [Header("Elements/Prefabs")]
-        [SerializeField] private GameObject start;
-        [SerializeField] private GameObject end;
-        [SerializeField] private GameObject spacing;
-
         [Header("References")]
-        [SerializeReference] private CreditsScroll creditsScroll;
-        [SerializeReference] private CreditsEnd creditsEnd;
+        [SerializeReference] private Scroll scroll;
 
         private CanvasScaler canvasScaler;
         private CreditsData data;
@@ -31,47 +26,34 @@ namespace FalmeStreamless.Credits
 
         void OnEnable()
         {
-            CreditsEnd.onCreditEndReached += CreditEndReached;
+            End.onCreditEndReached += CreditEndReached;
         }
 
         void OnDisable()
         {
-            CreditsEnd.onCreditEndReached -= CreditEndReached;
+            End.onCreditEndReached -= CreditEndReached;
         }
 
         void Start()
         {
-            creditsScroll.Initialize(canvasScaler.referenceResolution);
+            scroll.Initialize(
+                canvasScaler.referenceResolution,
+                GetJsonData()
+                );
         }
 
         void CreditEndReached(float difference)
         {
-            creditsScroll.StopScrolling();
-            creditsScroll.ScrollAdd(-difference); // Fix Overshot position
+            scroll.StopScrolling();
+            scroll.ScrollAdd(-difference); // Fix Overshot position
             creditsFinishedEvent?.Invoke();
         }
 
-        // Still not used functions
-        private void SerializeJsonData()
+        private CreditsData GetJsonData()
         {
-            data = JsonUtility.FromJson<CreditsData>(creditsJSON.text);
+            return JsonConvert.DeserializeObject<CreditsData>(creditsJSON.text);
         }
 
-        private void CreateStartPoint()
-        {
-            // GameObject.Instantiate(start, creditsScroll);
-        }
-
-        private void CreateEndPoint()
-        {
-            // GameObject.Instantiate(end, creditsScroll);
-        }
-
-        private void CreateLabel(CreditsItem item)
-        {
-            if (item.actors == null) return;
-            for (int a = 0; a < item.actors.Length; a++)
-                Debug.Log(item.actors[a]);
-        }
     }
 }
+
