@@ -10,6 +10,7 @@ namespace FalmeStreamless.Credits
         [SerializeField] private GameObject itemCategory;
         [SerializeField] private GameObject itemActor;
         [SerializeField] private GameObject itemSpacing;
+        [SerializeField] private GameObject itemImage;
 
         public void Initialize(CreditsData data)
         {
@@ -37,6 +38,7 @@ namespace FalmeStreamless.Credits
                 if (items[item].category) WriteCategory(items[item]);
                 if (items[item].actor) WriteActor(items[item]);
                 if (items[item].space) WriteSpacing(items[item]);
+                if (items[item].image) WriteImage(items[item]);
                 yield return null;
             }
         }
@@ -57,6 +59,12 @@ namespace FalmeStreamless.Credits
         {
             ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
             space.AutoConfigure(spacing);
+        }
+
+        private void WriteImage(CreditsItem image)
+        {
+            ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
+            item.SetHeight(image.height);
         }
     }
 }

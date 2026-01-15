@@ -13,11 +13,11 @@ namespace FalmeStreamless.Credits
     [System.Serializable]
     public class CreditsItem
     {
-	public bool category;
-	public bool actor;
-	public bool space;
-	public string text;
-	public int height;
-	}
-
+        public bool category;
+        public bool actor;
+        public bool space;
+        public bool image;
+        public string text;
+        public float height;
+    }
 }

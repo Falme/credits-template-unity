@@ -6,6 +6,7 @@
 		{"space": true, "height": 400},
 		{"category": true, "text": "Director"},
 		{"actor": true, "text": "Aya Kyogoku"},
+		{"image": true, "height": 200},
 		{"actor": true, "text": "John Doe"},
 		{"actor": true, "text": "Jane Doe"},
 		{"space": true, "height": 200},
