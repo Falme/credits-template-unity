@@ -17,6 +17,7 @@ namespace FalmeStreamless.Credits
         public bool actor;
         public bool space;
         public bool image;
+        public string path;
         public string text;
         public float height;
     }

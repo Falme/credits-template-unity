@@ -1,12 +1,13 @@
 {
 	"version": "0.0.1",
 	"velocity": 300,
-	"title": "Animal Crossing : New Horizons\nDevelopment Staff",
+	"title": "Super Jump Game 2: \nThe Electric Boogaloo",
 	"items": [
+		{"image": true, "path": "Credits/example_image.png", "height": 400},
 		{"space": true, "height": 400},
 		{"category": true, "text": "Director"},
 		{"actor": true, "text": "Aya Kyogoku"},
-		{"image": true, "height": 200},
+		{"image": true, "path": "Credits/epic_example_image.png", "height": 400},
 		{"actor": true, "text": "John Doe"},
 		{"actor": true, "text": "Jane Doe"},
 		{"space": true, "height": 200},

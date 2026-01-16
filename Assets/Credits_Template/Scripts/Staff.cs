@@ -64,6 +64,7 @@ namespace FalmeStreamless.Credits
         private void WriteImage(CreditsItem image)
         {
             ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
+            item.SetImage(image.path);
             item.SetHeight(image.height);
         }
     }

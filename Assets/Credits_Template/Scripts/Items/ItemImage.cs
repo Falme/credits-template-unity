@@ -16,7 +16,12 @@ namespace FalmeStreamless.Credits
 
         public void SetImage(string path)
         {
-            //set image path to be loaded
+            string streamingPath = System.IO.Path.Combine(Application.streamingAssetsPath, path);
+            byte[] pngBytes = System.IO.File.ReadAllBytes(streamingPath);
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(pngBytes);
+            Sprite fromTex = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
+            image.sprite = fromTex;
         }
 
         public void SetHeight(float height)
