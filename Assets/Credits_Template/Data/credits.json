@@ -5,9 +5,15 @@
 	"items": [
 		{"image": true, "path": "Credits/example_image.png", "height": 400},
 		{"space": true, "height": 400},
-		{"category": true, "text": "Director", "actors": [
-			"John Doe"
-		]},
+		{
+			"category": true, 
+			"text": "Director", 
+			"categorySpacing": 100,
+			"actorsSpacing": 100,
+			"actors": [
+				"John Doe"
+			]
+		},
 		{"image": true, "path": "Credits/epic_example_image.png", "height": 400},
 		{"space": true, "height": 200},
 		{"category": true, "text": "Producers", "actors": [

@@ -12,9 +12,9 @@ namespace FalmeStreamless.Credits
             layoutElement = GetComponent<LayoutElement>();
         }
 
-        public void AutoConfigure(CreditsItem item)
+        public void SetHeight(float newHeight)
         {
-            layoutElement.preferredHeight = item.height;
+            layoutElement.preferredHeight = newHeight;
         }
     }
 }
