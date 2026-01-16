@@ -9,7 +9,7 @@
 			"category": true, 
 			"text": "Director", 
 			"categorySpacing": 100,
-			"actorsSpacing": 100,
+			"actorsSpacing": 10,
 			"actors": [
 				"John Doe"
 			]

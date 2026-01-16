@@ -14,12 +14,12 @@ namespace FalmeStreamless.Credits
 
         public void Initialize(CreditsData data)
         {
-            ClearStaff();
+            Clear();
             WriteTitle(data.title);
             StartCoroutine(WriteStaff(data.items));
         }
 
-        private void ClearStaff()
+        private void Clear()
         {
             while (transform.childCount > 0)
                 DestroyImmediate(transform.GetChild(0).gameObject);
