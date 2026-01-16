@@ -20,5 +20,6 @@ namespace FalmeStreamless.Credits
         public string path;
         public string text;
         public float height;
+        public string[] actors;
     }
 }

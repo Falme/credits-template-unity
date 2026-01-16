@@ -36,7 +36,6 @@ namespace FalmeStreamless.Credits
             for (int item = 0; item < items.Length; item++)
             {
                 if (items[item].category) WriteCategory(items[item]);
-                if (items[item].actor) WriteActor(items[item]);
                 if (items[item].space) WriteSpacing(items[item]);
                 if (items[item].image) WriteImage(items[item]);
                 yield return null;
@@ -47,12 +46,15 @@ namespace FalmeStreamless.Credits
         {
             ItemLabel label = Instantiate(itemCategory, transform).GetComponent<ItemLabel>();
             label.SetText(category.text);
+
+            for (int a = 0; a < category.actors.Length; a++)
+                WriteActor(category.actors[a]);
         }
 
-        private void WriteActor(CreditsItem actor)
+        private void WriteActor(string actor)
         {
             ItemLabel label = Instantiate(itemActor, transform).GetComponent<ItemLabel>();
-            label.SetText(actor.text);
+            label.SetText(actor);
         }
 
         private void WriteSpacing(CreditsItem spacing)
