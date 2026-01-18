@@ -36,8 +36,8 @@ namespace FalmeStreamless.Credits
             for (int item = 0; item < items.Length; item++)
             {
                 if (items[item].category) WriteCategory(items[item]);
-                if (items[item].space) WriteSpacing(items[item].height);
-                if (items[item].image) WriteImage(items[item]);
+                else if (items[item].space) WriteSpacing(items[item].height);
+                else if (items[item].image) WriteImage(items[item]);
                 yield return null;
             }
         }
