@@ -14,12 +14,12 @@ namespace FalmeStreamless.Credits
 
         public void Initialize(CreditsData data)
         {
-            ClearStaff();
+            Clear();
             WriteTitle(data.title);
             StartCoroutine(WriteStaff(data.items));
         }
 
-        private void ClearStaff()
+        private void Clear()
         {
             while (transform.childCount > 0)
                 DestroyImmediate(transform.GetChild(0).gameObject);
@@ -36,9 +36,8 @@ namespace FalmeStreamless.Credits
             for (int item = 0; item < items.Length; item++)
             {
                 if (items[item].category) WriteCategory(items[item]);
-                if (items[item].actor) WriteActor(items[item]);
-                if (items[item].space) WriteSpacing(items[item]);
-                if (items[item].image) WriteImage(items[item]);
+                else if (items[item].space) WriteSpacing(items[item].height);
+                else if (items[item].image) WriteImage(items[item]);
                 yield return null;
             }
         }
@@ -47,18 +46,29 @@ namespace FalmeStreamless.Credits
         {
             ItemLabel label = Instantiate(itemCategory, transform).GetComponent<ItemLabel>();
             label.SetText(category.text);
+
+            if (category.categorySpacing > 0f)
+                WriteSpacing(category.categorySpacing);
+
+            for (int a = 0; a < category.actors.Length; a++)
+            {
+                WriteActor(category.actors[a]);
+
+                if (category.actorsSpacing > 0f)
+                    WriteSpacing(category.actorsSpacing);
+            }
         }
 
-        private void WriteActor(CreditsItem actor)
+        private void WriteActor(string actor)
         {
             ItemLabel label = Instantiate(itemActor, transform).GetComponent<ItemLabel>();
-            label.SetText(actor.text);
+            label.SetText(actor);
         }
 
-        private void WriteSpacing(CreditsItem spacing)
+        private void WriteSpacing(float height)
         {
             ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
-            space.AutoConfigure(spacing);
+            space.SetHeight(height);
         }
 
         private void WriteImage(CreditsItem image)
