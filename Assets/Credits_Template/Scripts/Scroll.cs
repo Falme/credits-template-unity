@@ -8,13 +8,19 @@ namespace FalmeStreamless.Credits
         [Header("References")]
         [SerializeField] private Staff staff;
 
-        private float scrollVelocity;
         private RectTransform rectTransform;
-        private bool isScrolling = false;
+        private float velocity;
+        private bool isScrolling;
 
         void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
+        }
+
+        void Update()
+        {
+            if (isScrolling)
+                ScrollCredits(Time.deltaTime);
         }
 
         public void Initialize(Vector2 resolution, CreditsData data)
@@ -24,21 +30,20 @@ namespace FalmeStreamless.Credits
             StartScrolling();
         }
 
-        void Update()
-        {
-            if (isScrolling)
-                ScrollCredits(Time.deltaTime);
-        }
-
         private void FillCreditsData(CreditsData data)
         {
-            scrollVelocity = data.velocity;
+            velocity = data.velocity;
             staff.Initialize(data);
+        }
+
+        public void ScrollToStart(Vector2 resolution)
+        {
+            rectTransform.anchoredPosition = new Vector2(0, -resolution.y);
         }
 
         public void ScrollCredits(float delta)
         {
-            ScrollAdd(scrollVelocity * delta);
+            ScrollAdd(velocity * delta);
         }
 
         public void StartScrolling()
@@ -51,20 +56,10 @@ namespace FalmeStreamless.Credits
             isScrolling = false;
         }
 
-        public void ScrollTo(float y)
-        {
-            rectTransform.anchoredPosition = new Vector2(0, y);
-        }
-
         public void ScrollAdd(float y)
         {
-            y = rectTransform.anchoredPosition.y + y;
+            y += rectTransform.anchoredPosition.y;
             rectTransform.anchoredPosition = new Vector2(0, y);
-        }
-
-        public void ScrollToStart(Vector2 resolution)
-        {
-            rectTransform.anchoredPosition = new Vector2(0, -resolution.y);
         }
     }
 }

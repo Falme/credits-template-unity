@@ -5,17 +5,21 @@
 	"items": [
 		{"image": true, "path": "Credits/example_image.png", "height": 400},
 		{"space": true, "height": 400},
-		{"category": true, "text": "Director"},
-		{"actor": true, "text": "Aya Kyogoku"},
+		{
+			"category": true, 
+			"text": "Director", 
+			"categorySpacing": 100,
+			"actorsSpacing": 10,
+			"actors": [
+				"John Doe"
+			]
+		},
 		{"image": true, "path": "Credits/epic_example_image.png", "height": 400},
-		{"actor": true, "text": "John Doe"},
-		{"actor": true, "text": "Jane Doe"},
 		{"space": true, "height": 200},
-		{"category": true, "text": "Producers"},
-		{"actor": true, "text": "John Doe"},
-		{"actor": true, "text": "Jane Doe"},
-		{"space": true, "height": 100},
-		{"actor": true, "text": "Oscar Garlic"},
-		{"actor": true, "text": "Aya Kyogoku"},
+		{"category": true, "text": "Producers", "actors": [
+			"John Doe",
+			"Jane Doe",
+			"Oscar Garlic"
+		]}
 	]
 }

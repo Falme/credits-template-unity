@@ -8,21 +8,13 @@ namespace FalmeStreamless.Credits
     [ExecuteAlways]
     public class Credits : MonoBehaviour
     {
-        public static event Action creditsFinishedEvent;
+        public static event Action OnCreditsFinished;
 
         [Header("All Credits Data")]
         [SerializeField] private TextAsset creditsJSON;
 
         [Header("References")]
         [SerializeReference] private Scroll scroll;
-
-        private CanvasScaler canvasScaler;
-        private CreditsData data;
-
-        void Awake()
-        {
-            canvasScaler = GetComponent<CanvasScaler>();
-        }
 
         void OnEnable()
         {
@@ -36,6 +28,8 @@ namespace FalmeStreamless.Credits
 
         void Start()
         {
+            CanvasScaler canvasScaler = GetComponent<CanvasScaler>();
+
             scroll.Initialize(
                 canvasScaler.referenceResolution,
                 GetJsonData()
@@ -46,14 +40,12 @@ namespace FalmeStreamless.Credits
         {
             scroll.StopScrolling();
             scroll.ScrollAdd(-difference); // Fix Overshot position
-            creditsFinishedEvent?.Invoke();
+            OnCreditsFinished?.Invoke();
         }
 
         private CreditsData GetJsonData()
         {
             return JsonConvert.DeserializeObject<CreditsData>(creditsJSON.text);
         }
-
     }
 }
-
