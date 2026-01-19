@@ -66,6 +66,8 @@ namespace FalmeStreamless.Credits
 
         private void WriteSpacing(float height)
         {
+            if (height <= 0) return;
+
             ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
             space.SetHeight(height);
         }
