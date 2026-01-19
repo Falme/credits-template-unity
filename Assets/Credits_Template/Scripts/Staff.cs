@@ -46,19 +46,14 @@ namespace FalmeStreamless.Credits
 
         private void WriteCategory(CreditsItem category)
         {
-            ItemLabel label = Instantiate(itemCategory, transform).GetComponent<ItemLabel>();
-            label.SetText(category.text);
+            ItemCategory label = Instantiate(itemCategory, transform).GetComponent<ItemCategory>();
+            label.onDrawSpace += WriteSpacing;
+            label.onDrawActor += WriteActor;
 
-            if (category.categorySpacing > 0f)
-                WriteSpacing(category.categorySpacing);
+            label.Initialize(category);
 
-            for (int a = 0; a < category.actors.Length; a++)
-            {
-                WriteActor(category.actors[a]);
-
-                if (category.actorsSpacing > 0f)
-                    WriteSpacing(category.actorsSpacing);
-            }
+            label.onDrawSpace -= WriteSpacing;
+            label.onDrawActor -= WriteActor;
         }
 
         private void WriteActor(string actor)
