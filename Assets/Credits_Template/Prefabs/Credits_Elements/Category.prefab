@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8555350597581132922}
   - component: {fileID: 2904584282746766004}
   - component: {fileID: 5488647403815835825}
-  - component: {fileID: -6252520618977728440}
+  - component: {fileID: 152503862181620157}
   m_Layer: 5
   m_Name: Category
   m_TagString: Untagged
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Director
+  m_text: '#ERROR CATEGORY'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &-6252520618977728440
+--- !u!114 &152503862181620157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,6 +147,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698706429408098416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7280888e75ece5ea8e8dbef52c17331, type: 3}
+  m_Script: {fileID: 11500000, guid: 7881ca3ea795f5966afa5305af6f099a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.ItemLabel
+  m_EditorClassIdentifier: Assembly-CSharp::FalmeStreamless.Credits.ItemCategory

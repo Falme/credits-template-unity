@@ -3,7 +3,6 @@ using System;
 
 namespace FalmeStreamless.Credits
 {
-    [ExecuteAlways]
     public class End : MonoBehaviour
     {
         public static event Action<float> onCreditEndReached;

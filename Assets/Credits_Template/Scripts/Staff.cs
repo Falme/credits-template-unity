@@ -27,6 +27,8 @@ namespace FalmeStreamless.Credits
 
         private void WriteTitle(string title)
         {
+            if (string.IsNullOrEmpty(title)) return;
+
             ItemLabel label = Instantiate(itemTitle, transform).GetComponent<ItemLabel>();
             label.SetText(title);
         }
@@ -44,29 +46,28 @@ namespace FalmeStreamless.Credits
 
         private void WriteCategory(CreditsItem category)
         {
-            ItemLabel label = Instantiate(itemCategory, transform).GetComponent<ItemLabel>();
-            label.SetText(category.text);
+            ItemCategory label = Instantiate(itemCategory, transform).GetComponent<ItemCategory>();
+            label.onDrawSpace += WriteSpacing;
+            label.onDrawActor += WriteActor;
 
-            if (category.categorySpacing > 0f)
-                WriteSpacing(category.categorySpacing);
+            label.Initialize(category);
 
-            for (int a = 0; a < category.actors.Length; a++)
-            {
-                WriteActor(category.actors[a]);
-
-                if (category.actorsSpacing > 0f)
-                    WriteSpacing(category.actorsSpacing);
-            }
+            label.onDrawSpace -= WriteSpacing;
+            label.onDrawActor -= WriteActor;
         }
 
         private void WriteActor(string actor)
         {
+            if (string.IsNullOrEmpty(actor)) return;
+
             ItemLabel label = Instantiate(itemActor, transform).GetComponent<ItemLabel>();
             label.SetText(actor);
         }
 
         private void WriteSpacing(float height)
         {
+            if (height <= 0) return;
+
             ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
             space.SetHeight(height);
         }
@@ -74,8 +75,7 @@ namespace FalmeStreamless.Credits
         private void WriteImage(CreditsItem image)
         {
             ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
-            item.SetImage(image.path);
-            item.SetHeight(image.height);
+            item.Initialize(image);
         }
     }
 }

@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 
 namespace FalmeStreamless.Credits
 {
-    [ExecuteAlways]
     public class Credits : MonoBehaviour
     {
         public static event Action OnCreditsFinished;
