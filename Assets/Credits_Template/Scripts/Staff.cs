@@ -27,6 +27,8 @@ namespace FalmeStreamless.Credits
 
         private void WriteTitle(string title)
         {
+            if (string.IsNullOrEmpty(title)) return;
+
             ItemLabel label = Instantiate(itemTitle, transform).GetComponent<ItemLabel>();
             label.SetText(title);
         }
@@ -61,6 +63,8 @@ namespace FalmeStreamless.Credits
 
         private void WriteActor(string actor)
         {
+            if (string.IsNullOrEmpty(actor)) return;
+
             ItemLabel label = Instantiate(itemActor, transform).GetComponent<ItemLabel>();
             label.SetText(actor);
         }
@@ -74,8 +78,7 @@ namespace FalmeStreamless.Credits
         private void WriteImage(CreditsItem image)
         {
             ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
-            item.SetImage(image.path);
-            item.SetHeight(image.height);
+            item.Initialize(image);
         }
     }
 }
