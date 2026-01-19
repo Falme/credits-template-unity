@@ -14,18 +14,34 @@ namespace FalmeStreamless.Credits
             layoutElement = GetComponent<LayoutElement>();
         }
 
+        public void Initialize(CreditsItem image)
+        {
+            SetImage(image.path);
+            SetHeight(image.height);
+        }
+
         public void SetImage(string path)
         {
             string streamingPath = System.IO.Path.Combine(Application.streamingAssetsPath, path);
-            byte[] pngBytes = System.IO.File.ReadAllBytes(streamingPath);
-            Texture2D tex = new Texture2D(2, 2);
-            tex.LoadImage(pngBytes);
-            Sprite fromTex = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
-            image.sprite = fromTex;
+
+            try
+            {
+                byte[] pngBytes = System.IO.File.ReadAllBytes(streamingPath);
+                Texture2D tex = new Texture2D(2, 2);
+                tex.LoadImage(pngBytes);
+                Sprite fromTex = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
+                image.sprite = fromTex;
+            }
+            catch (System.Exception)
+            {
+                string result = string.Format("Credits Template: Not possible to read image at {0}", streamingPath);
+                Debug.LogError(result);
+            }
         }
 
         public void SetHeight(float height)
         {
+            if (height < 0) height = 0;
             layoutElement.preferredHeight = height;
         }
     }

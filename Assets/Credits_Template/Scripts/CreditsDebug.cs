@@ -1,5 +1,5 @@
-using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine;
+//using UnityEngine.UI;
 using UnityEditor;
 
 namespace FalmeStreamless.Credits
@@ -12,6 +12,7 @@ namespace FalmeStreamless.Credits
         {
             DrawDefaultInspector();
 
+            /*
             Scroll scroll = (Scroll)target;
             if (GUILayout.Button("Scroll Start"))
             {
@@ -23,6 +24,7 @@ namespace FalmeStreamless.Credits
             {
                 scroll.StopScrolling();
             }
+			*/
         }
     }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace FalmeStreamless.Credits
 {
-    [ExecuteAlways]
     public class Scroll : MonoBehaviour
     {
         [Header("References")]
