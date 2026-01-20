@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 05828c37fe14bacb3868d847375277df
+guid: c9335c19d05249410aaab2b9ef80b164
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5839820706974066888
-    second: cross_0
+      213: -4622167664295745470
+    second: kjMizd_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cross_0
+      name: kjMizd_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1280
-        height: 720
+        width: 1202
+        height: 801
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c8e8270ef53b0150800000000000000
-      internalID: 5839820706974066888
+      spriteID: 248ea55aff2cadfb0800000000000000
+      internalID: -4622167664295745470
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cross_0: 5839820706974066888
+      kjMizd_0: -4622167664295745470
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
