@@ -31,7 +31,7 @@ namespace FalmeStreamless.Credits
 
         private void FillCreditsData(CreditsData data)
         {
-            velocity = data.velocity;
+			SetScrollVelocity(data.velocity);
             staff.Initialize(data);
         }
 
@@ -60,5 +60,10 @@ namespace FalmeStreamless.Credits
             y += rectTransform.anchoredPosition.y;
             rectTransform.anchoredPosition = new Vector2(0, y);
         }
+
+		public void SetScrollVelocity(float newVelocity)
+		{
+			velocity = newVelocity;
+		}
     }
 }
