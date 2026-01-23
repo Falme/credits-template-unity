@@ -32,7 +32,7 @@ namespace FalmeStreamless.Credits
         {
             if (string.IsNullOrEmpty(title)) return;
 
-            ItemLabel label = Instantiate(itemTitle, transform).GetComponent<ItemLabel>();
+            ItemTitle label = Instantiate(itemTitle, transform).GetComponent<ItemTitle>();
             label.SetText(title);
         }
 
@@ -63,7 +63,7 @@ namespace FalmeStreamless.Credits
         {
             if (string.IsNullOrEmpty(actor)) return;
 
-            ItemLabel label = Instantiate(itemActor, transform).GetComponent<ItemLabel>();
+            ItemActor label = Instantiate(itemActor, transform).GetComponent<ItemActor>();
             label.SetText(actor);
         }
 
