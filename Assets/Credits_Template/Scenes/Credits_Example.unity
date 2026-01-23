@@ -914,6 +914,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7664225722825999047, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664225722825999047, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664225722825999047, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664225722825999047, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8515615087025711151, guid: fc5d49922b411486680fe533c9d8604a, type: 3}
       propertyPath: m_Name
       value: Credits_Canvas

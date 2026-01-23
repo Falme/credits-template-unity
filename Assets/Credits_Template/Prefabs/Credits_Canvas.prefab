@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7664225722825999047}
   - component: {fileID: 894683805771048240}
+  - component: {fileID: 1316413951537951625}
   m_Layer: 5
   m_Name: Credits_Pool
   m_TagString: Untagged
@@ -49,6 +50,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pool
   initialBatch: 10
+  actorPrefab: {fileID: 2634456905399571369, guid: 7f87b8a721faa7618864a8e8c3524553, type: 3}
+--- !u!225 &1316413951537951625
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908125795663089741}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2478810042086718750
 GameObject:
   m_ObjectHideFlags: 0

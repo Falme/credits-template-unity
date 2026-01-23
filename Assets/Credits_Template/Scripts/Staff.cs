@@ -63,7 +63,8 @@ namespace FalmeStreamless.Credits
         {
             if (string.IsNullOrEmpty(actor)) return;
 
-            ItemActor label = Instantiate(itemActor, transform).GetComponent<ItemActor>();
+            // ItemActor label = Instantiate(itemActor, transform).GetComponent<ItemActor>();
+            ItemActor label = pool.GetActor(transform);
             label.SetText(actor);
         }
 
