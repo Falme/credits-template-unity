@@ -12,6 +12,9 @@ namespace FalmeStreamless.Credits
         [SerializeField] private GameObject itemSpacing;
         [SerializeField] private GameObject itemImage;
 
+        [Header("Pooling System")]
+        [SerializeField] private Pool pool;
+
         public void Initialize(CreditsData data)
         {
             Clear();
