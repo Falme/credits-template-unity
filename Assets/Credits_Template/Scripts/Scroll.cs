@@ -16,6 +16,17 @@ namespace FalmeStreamless.Credits
             rectTransform = GetComponent<RectTransform>();
         }
 
+        void OnEnable()
+        {
+            Pool.onRemovedItem += RemovedItem;
+        }
+
+        void OnDisable()
+        {
+            Pool.onRemovedItem -= RemovedItem;
+        }
+
+
         void Update()
         {
             if (isScrolling)
@@ -31,7 +42,7 @@ namespace FalmeStreamless.Credits
 
         private void FillCreditsData(CreditsData data)
         {
-			SetScrollVelocity(data.velocity);
+            SetScrollVelocity(data.velocity);
             staff.Initialize(data);
         }
 
@@ -61,9 +72,15 @@ namespace FalmeStreamless.Credits
             rectTransform.anchoredPosition = new Vector2(0, y);
         }
 
-		public void SetScrollVelocity(float newVelocity)
-		{
-			velocity = newVelocity;
-		}
+        public void SetScrollVelocity(float newVelocity)
+        {
+            velocity = newVelocity;
+        }
+
+        public void RemovedItem(float height)
+        {
+            Debug.Log("Added height " + height);
+            ScrollAdd(-height);
+        }
     }
 }
