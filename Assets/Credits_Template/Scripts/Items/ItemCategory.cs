@@ -4,18 +4,27 @@ using System;
 
 namespace FalmeStreamless.Credits
 {
-    public class ItemCategory : MonoBehaviour
+    public class ItemCategory : CreditsItem
     {
         public event Action<float> onDrawSpace;
         public event Action<string> onDrawActor;
-        private TextMeshProUGUI text;
+        private TextMeshProUGUI label;
 
-        void Awake()
+        protected override void Awake()
         {
-            text = GetComponent<TextMeshProUGUI>();
+            base.Awake();
+            label = GetComponent<TextMeshProUGUI>();
         }
 
-        public void Initialize(CreditsItem category)
+        protected override void Update()
+        {
+            if (hasPassedTopBorder())
+                this.pool.ReleaseCategory(this);
+
+            lastYPosition = rectTransform.position.y;
+        }
+
+        public void Initialize(CreditsItemData category)
         {
             SetText(category.text);
             SetCategorySpacing(category);
@@ -24,16 +33,16 @@ namespace FalmeStreamless.Credits
 
         private void SetText(string newText)
         {
-            this.text.text = newText;
+            label.text = newText;
         }
 
-        private void SetCategorySpacing(CreditsItem category)
+        private void SetCategorySpacing(CreditsItemData category)
         {
             if (category.categorySpacing > 0f)
                 onDrawSpace?.Invoke(category.categorySpacing);
         }
 
-        private void SetActors(CreditsItem category)
+        private void SetActors(CreditsItemData category)
         {
             for (int a = 0; a < category.actors.Length; a++)
             {

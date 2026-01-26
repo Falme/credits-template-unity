@@ -6,11 +6,11 @@ namespace FalmeStreamless.Credits
         public string version;
         public float velocity;
         public string title;
-        public CreditsItem[] items;
+        public CreditsItemData[] items;
     }
 
     [System.Serializable]
-    public class CreditsItem
+    public class CreditsItemData
     {
         public bool category;
         public bool space;

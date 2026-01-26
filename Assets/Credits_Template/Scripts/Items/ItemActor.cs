@@ -3,20 +3,17 @@ using TMPro;
 
 namespace FalmeStreamless.Credits
 {
-    public class ItemActor : MonoBehaviour
+    public class ItemActor : CreditsItem
     {
         private TextMeshProUGUI label;
-        private RectTransform rectTransform;
-        private Pool pool;
-        private float lastYPosition;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             label = GetComponent<TextMeshProUGUI>();
-            rectTransform = GetComponent<RectTransform>();
         }
 
-        void Update()
+        protected override void Update()
         {
             if (hasPassedTopBorder())
                 this.pool.ReleaseActor(this);
@@ -24,29 +21,9 @@ namespace FalmeStreamless.Credits
             lastYPosition = rectTransform.position.y;
         }
 
-        public void SetPool(Pool pool)
-        {
-            this.pool = pool;
-        }
-
         public void SetText(string newText)
         {
             label.text = newText;
-        }
-
-        public bool hasPassedTopBorder()
-        {
-            bool previousPositionBelowTopBorder =
-                (lastYPosition - GetHeight()) <= Screen.height;
-            bool currentPositionAboveTopBorder =
-                (rectTransform.position.y - GetHeight()) > Screen.height;
-
-            return previousPositionBelowTopBorder && currentPositionAboveTopBorder;
-        }
-
-        public float GetHeight()
-        {
-            return rectTransform.sizeDelta.y;
         }
 
         public Vector2 BottomItemPosition()

@@ -36,7 +36,7 @@ namespace FalmeStreamless.Credits
             label.SetText(title);
         }
 
-        private IEnumerator WriteStaff(CreditsItem[] items)
+        private IEnumerator WriteStaff(CreditsItemData[] items)
         {
             for (int item = 0; item < items.Length; item++)
             {
@@ -47,9 +47,10 @@ namespace FalmeStreamless.Credits
             }
         }
 
-        private void WriteCategory(CreditsItem category)
+        private void WriteCategory(CreditsItemData category)
         {
-            ItemCategory label = Instantiate(itemCategory, transform).GetComponent<ItemCategory>();
+            // ItemCategory label = Instantiate(itemCategory, transform).GetComponent<ItemCategory>();
+            ItemCategory label = pool.GetCategory(transform);
             label.onDrawSpace += WriteSpacing;
             label.onDrawActor += WriteActor;
 
@@ -75,7 +76,7 @@ namespace FalmeStreamless.Credits
             space.SetHeight(height);
         }
 
-        private void WriteImage(CreditsItem image)
+        private void WriteImage(CreditsItemData image)
         {
             ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
             item.Initialize(image);

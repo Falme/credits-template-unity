@@ -9,8 +9,10 @@ namespace FalmeStreamless.Credits
         public static event Action<float> onRemovedItem;
 
         [SerializeField] private ItemActor actorPrefab;
+        [SerializeField] private ItemCategory categoryPrefab;
 
         private Stack<ItemActor> freeActor = new Stack<ItemActor>();
+        private Stack<ItemCategory> freeCategory = new Stack<ItemCategory>();
 
         public ItemActor GetActor(Transform newParent)
         {
@@ -35,5 +37,28 @@ namespace FalmeStreamless.Credits
             freeActor.Push(label);
         }
 
+
+        public ItemCategory GetCategory(Transform newParent)
+        {
+            if (freeCategory.Count <= 0) AddCategory();
+
+            ItemCategory category = freeCategory.Pop();
+            category.transform.SetParent(newParent);
+            return category;
+        }
+
+        public void ReleaseCategory(ItemCategory category)
+        {
+            onRemovedItem?.Invoke(category.GetHeight());
+            category.transform.SetParent(transform);
+            freeCategory.Push(category);
+        }
+
+        private void AddCategory()
+        {
+            ItemCategory label = Instantiate(categoryPrefab, transform).GetComponent<ItemCategory>();
+            label.SetPool(this);
+            freeCategory.Push(label);
+        }
     }
 }
