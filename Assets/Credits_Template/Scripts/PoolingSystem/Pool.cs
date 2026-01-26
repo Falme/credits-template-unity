@@ -18,7 +18,6 @@ namespace FalmeStreamless.Credits
 
             ItemActor actor = freeActor.Pop();
             actor.transform.SetParent(newParent);
-            actor.SetRolling(true);
             return actor;
         }
 
@@ -26,7 +25,6 @@ namespace FalmeStreamless.Credits
         {
             onRemovedItem?.Invoke(actor.GetHeight());
             actor.transform.SetParent(transform);
-            actor.SetRolling(false);
             freeActor.Push(actor);
         }
 

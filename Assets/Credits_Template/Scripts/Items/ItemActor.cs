@@ -5,23 +5,23 @@ namespace FalmeStreamless.Credits
 {
     public class ItemActor : MonoBehaviour
     {
-        private TextMeshProUGUI text;
+        private TextMeshProUGUI label;
         private RectTransform rectTransform;
         private Pool pool;
-        private bool isRolling;
+        private float lastYPosition;
 
         void Awake()
         {
-            text = GetComponent<TextMeshProUGUI>();
+            label = GetComponent<TextMeshProUGUI>();
             rectTransform = GetComponent<RectTransform>();
         }
 
         void Update()
         {
-            if (!isRolling) return;
-
             if (hasPassedTopBorder())
                 this.pool.ReleaseActor(this);
+
+            lastYPosition = rectTransform.position.y;
         }
 
         public void SetPool(Pool pool)
@@ -31,13 +31,17 @@ namespace FalmeStreamless.Credits
 
         public void SetText(string newText)
         {
-            this.text.text = newText;
+            label.text = newText;
         }
 
         public bool hasPassedTopBorder()
         {
-            float pivotY = rectTransform.position.y - rectTransform.sizeDelta.y;
-            return pivotY > Screen.height;
+            bool previousPositionBelowTopBorder =
+                (lastYPosition - GetHeight()) <= Screen.height;
+            bool currentPositionAboveTopBorder =
+                (rectTransform.position.y - GetHeight()) > Screen.height;
+
+            return previousPositionBelowTopBorder && currentPositionAboveTopBorder;
         }
 
         public float GetHeight()
@@ -45,9 +49,9 @@ namespace FalmeStreamless.Credits
             return rectTransform.sizeDelta.y;
         }
 
-        public void SetRolling(bool rolling)
+        public Vector2 BottomItemPosition()
         {
-            this.isRolling = rolling;
+            return (Vector2)rectTransform.position - rectTransform.sizeDelta;
         }
     }
 }
