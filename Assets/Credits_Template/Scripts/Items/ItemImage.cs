@@ -3,13 +3,14 @@ using UnityEngine.UI;
 
 namespace FalmeStreamless.Credits
 {
-    public class ItemImage : MonoBehaviour
+    public class ItemImage : CreditsItem
     {
         private Image image;
         private LayoutElement layoutElement;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             image = GetComponent<Image>();
             layoutElement = GetComponent<LayoutElement>();
         }

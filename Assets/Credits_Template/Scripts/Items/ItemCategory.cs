@@ -1,4 +1,3 @@
-using UnityEngine;
 using TMPro;
 using System;
 
@@ -14,14 +13,6 @@ namespace FalmeStreamless.Credits
         {
             base.Awake();
             label = GetComponent<TextMeshProUGUI>();
-        }
-
-        protected override void Update()
-        {
-            if (hasPassedTopBorder())
-                this.pool.ReleaseCategory(this);
-
-            lastYPosition = rectTransform.position.y;
         }
 
         public void Initialize(CreditsItemData category)

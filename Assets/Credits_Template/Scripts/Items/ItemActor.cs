@@ -13,14 +13,6 @@ namespace FalmeStreamless.Credits
             label = GetComponent<TextMeshProUGUI>();
         }
 
-        protected override void Update()
-        {
-            if (hasPassedTopBorder())
-                this.pool.ReleaseActor(this);
-
-            lastYPosition = rectTransform.position.y;
-        }
-
         public void SetText(string newText)
         {
             label.text = newText;

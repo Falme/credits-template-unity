@@ -1,14 +1,14 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace FalmeStreamless.Credits
 {
-    public class ItemSpacing : MonoBehaviour
+    public class ItemSpacing : CreditsItem
     {
         private LayoutElement layoutElement;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             layoutElement = GetComponent<LayoutElement>();
         }
 

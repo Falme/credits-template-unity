@@ -79,7 +79,6 @@ namespace FalmeStreamless.Credits
 
         public void RemovedItem(float height)
         {
-            Debug.Log("Added height " + height);
             ScrollAdd(-height);
         }
     }

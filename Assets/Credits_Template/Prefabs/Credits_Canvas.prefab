@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pool
   actorPrefab: {fileID: 2634456905399571369, guid: 7f87b8a721faa7618864a8e8c3524553, type: 3}
   categoryPrefab: {fileID: 152503862181620157, guid: 9b2346a5fca091879b77e2705ee38631, type: 3}
+  spacingPrefab: {fileID: -3430667889440744709, guid: ddf37ed7e3034ce7fbcdee77c68e4a4c, type: 3}
+  imagePrefab: {fileID: 4727675405983297252, guid: 0e12dfe5fd9f6791aba76497542f5aa3, type: 3}
 --- !u!225 &1316413951537951625
 CanvasGroup:
   m_ObjectHideFlags: 0

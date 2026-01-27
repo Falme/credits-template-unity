@@ -72,13 +72,15 @@ namespace FalmeStreamless.Credits
         {
             if (height <= 0) return;
 
-            ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
+            // ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
+            ItemSpacing space = pool.GetSpacing(transform);
             space.SetHeight(height);
         }
 
         private void WriteImage(CreditsItemData image)
         {
-            ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
+            // ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
+            ItemImage item = pool.GetImage(transform);
             item.Initialize(image);
         }
     }

@@ -15,8 +15,8 @@ namespace FalmeStreamless.Credits
 
         protected virtual void Update()
         {
-            // if (hasPassedTopBorder())
-            //     this.pool.Release(this);
+            if (hasPassedTopBorder())
+                this.pool.Release(this);
 
             lastYPosition = rectTransform.position.y;
         }
@@ -28,10 +28,11 @@ namespace FalmeStreamless.Credits
 
         public bool hasPassedTopBorder()
         {
+
             bool previousPositionBelowTopBorder =
-                (lastYPosition - GetHeight()) <= Screen.height;
+                (lastYPosition - (GetHeight() / 2)) <= Screen.height;
             bool currentPositionAboveTopBorder =
-                (rectTransform.position.y - GetHeight()) > Screen.height;
+                (rectTransform.position.y - (GetHeight() / 2)) > Screen.height;
 
             return previousPositionBelowTopBorder && currentPositionAboveTopBorder;
         }
