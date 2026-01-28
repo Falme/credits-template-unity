@@ -49,6 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2b0979e4036e5359a7977ddf844ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pool
+  actor:
+    itemPrefab: {fileID: 2634456905399571369, guid: 7f87b8a721faa7618864a8e8c3524553, type: 3}
+  category:
+    itemPrefab: {fileID: 152503862181620157, guid: 9b2346a5fca091879b77e2705ee38631, type: 3}
+  spacing:
+    itemPrefab: {fileID: -3430667889440744709, guid: ddf37ed7e3034ce7fbcdee77c68e4a4c, type: 3}
+  image:
+    itemPrefab: {fileID: 4727675405983297252, guid: 0e12dfe5fd9f6791aba76497542f5aa3, type: 3}
   actorPrefab: {fileID: 2634456905399571369, guid: 7f87b8a721faa7618864a8e8c3524553, type: 3}
   categoryPrefab: {fileID: 152503862181620157, guid: 9b2346a5fca091879b77e2705ee38631, type: 3}
   spacingPrefab: {fileID: -3430667889440744709, guid: ddf37ed7e3034ce7fbcdee77c68e4a4c, type: 3}

@@ -37,9 +37,6 @@ namespace FalmeStreamless.Credits
             return previousPositionBelowTopBorder && currentPositionAboveTopBorder;
         }
 
-        public float GetHeight()
-        {
-            return rectTransform.sizeDelta.y;
-        }
+        public float GetHeight() => rectTransform.sizeDelta.y;
     }
 }

@@ -50,7 +50,8 @@ namespace FalmeStreamless.Credits
         private void WriteCategory(CreditsItemData category)
         {
             // ItemCategory label = Instantiate(itemCategory, transform).GetComponent<ItemCategory>();
-            ItemCategory label = pool.GetCategory(transform);
+            // ItemCategory label = pool.GetCategory(transform);
+            ItemCategory label = pool.category.GetItem(transform);
             label.onDrawSpace += WriteSpacing;
             label.onDrawActor += WriteActor;
 
@@ -64,7 +65,7 @@ namespace FalmeStreamless.Credits
         {
             if (string.IsNullOrEmpty(actor)) return;
 
-            ItemActor label = pool.GetActor(transform);
+            ItemActor label = pool.actor.GetItem(transform);
             label.SetText(actor);
         }
 
@@ -73,14 +74,16 @@ namespace FalmeStreamless.Credits
             if (height <= 0) return;
 
             // ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
-            ItemSpacing space = pool.GetSpacing(transform);
+            // ItemSpacing space = pool.GetSpacing(transform);
+            ItemSpacing space = pool.spacing.GetItem(transform);
             space.SetHeight(height);
         }
 
         private void WriteImage(CreditsItemData image)
         {
             // ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
-            ItemImage item = pool.GetImage(transform);
+            // ItemImage item = pool.GetImage(transform);
+            ItemImage item = pool.image.GetItem(transform);
             item.Initialize(image);
         }
     }
