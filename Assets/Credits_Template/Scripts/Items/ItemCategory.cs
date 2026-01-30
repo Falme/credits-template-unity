@@ -18,8 +18,8 @@ namespace FalmeStreamless.Credits
         public void Initialize(CreditsItemData category)
         {
             SetText(category.text);
-            SetCategorySpacing(category);
-            SetActors(category);
+            // SetCategorySpacing(category);
+            // SetActors(category);
         }
 
         private void SetText(string newText)

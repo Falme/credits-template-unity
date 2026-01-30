@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 namespace FalmeStreamless.Credits
 {
@@ -7,13 +9,11 @@ namespace FalmeStreamless.Credits
     {
         [Header("Prefab Items")]
         [SerializeField] private GameObject itemTitle;
-        [SerializeField] private GameObject itemCategory;
-        [SerializeField] private GameObject itemActor;
-        [SerializeField] private GameObject itemSpacing;
-        [SerializeField] private GameObject itemImage;
 
         [Header("Pooling System")]
         [SerializeField] private Pool pool;
+
+		private Queue<Action> orderItems = new Queue<Action>();
 
         public void Initialize(CreditsData data)
         {
@@ -21,6 +21,13 @@ namespace FalmeStreamless.Credits
             WriteTitle(data.title);
             StartCoroutine(WriteStaff(data.items));
         }
+
+		private void Update()
+		{
+			CreditsItem item = transform.GetChild(transform.childCount-1).GetComponent<CreditsItem>();
+			if(item.hasPassedBottomBorder())
+				DequeueItem();
+		}
 
         private void Clear()
         {
@@ -40,26 +47,59 @@ namespace FalmeStreamless.Credits
         {
             for (int item = 0; item < items.Length; item++)
             {
-                if (items[item].category) WriteCategory(items[item]);
-                else if (items[item].space) WriteSpacing(items[item].height);
-                else if (items[item].image) WriteImage(items[item]);
+				int indexCopy = item;
+                if (items[item].space)  orderItems.Enqueue(() => WriteSpacing(items[indexCopy].height));
+                else if (items[item].image)  orderItems.Enqueue(() => WriteImage(items[indexCopy]));
+				else if (items[item].category) 
+				{
+					orderItems.Enqueue(() => WriteCategory(items[indexCopy]));
+
+					if (items[item].categorySpacing > 0f)
+						orderItems.Enqueue(() => WriteSpacing(items[indexCopy].categorySpacing));
+
+					for (int a = 0; a < items[item].actors.Length; a++)
+					{
+						int actorIndex = a;
+						orderItems.Enqueue(() => WriteActor(items[indexCopy].actors[actorIndex]));
+
+						if (items[item].actorsSpacing > 0f)
+							orderItems.Enqueue(() => WriteSpacing(items[indexCopy].actorsSpacing));
+					}
+				}
+
+				if(item == 0) 
+					DequeueItem();
                 yield return null;
             }
         }
 
+		public void DequeueItem()
+		{
+			if(orderItems.Count > 0)
+				orderItems.Dequeue().Invoke();
+		}
+
         private void WriteCategory(CreditsItemData category)
         {
-            // ItemCategory label = Instantiate(itemCategory, transform).GetComponent<ItemCategory>();
-            // ItemCategory label = pool.GetCategory(transform);
             ItemCategory label = pool.category.GetItem(transform);
-            label.onDrawSpace += WriteSpacing;
-            label.onDrawActor += WriteActor;
+            label.onDrawSpace += EnqueueSpacing;
+            label.onDrawActor += EnqueueActor;
 
             label.Initialize(category);
 
-            label.onDrawSpace -= WriteSpacing;
-            label.onDrawActor -= WriteActor;
+            label.onDrawSpace -= EnqueueSpacing;
+            label.onDrawActor -= EnqueueActor;
         }
+
+		public void EnqueueActor(string actor)
+		{
+			orderItems.Enqueue(() => WriteActor(actor));
+		}
+
+		public void EnqueueSpacing(float height)
+		{
+			orderItems.Enqueue(() => WriteSpacing(height));
+		}
 
         private void WriteActor(string actor)
         {
@@ -73,16 +113,13 @@ namespace FalmeStreamless.Credits
         {
             if (height <= 0) return;
 
-            // ItemSpacing space = Instantiate(itemSpacing, transform).GetComponent<ItemSpacing>();
-            // ItemSpacing space = pool.GetSpacing(transform);
             ItemSpacing space = pool.spacing.GetItem(transform);
             space.SetHeight(height);
         }
 
         private void WriteImage(CreditsItemData image)
         {
-            // ItemImage item = Instantiate(itemImage, transform).GetComponent<ItemImage>();
-            // ItemImage item = pool.GetImage(transform);
+			Debug.Log(image);
             ItemImage item = pool.image.GetItem(transform);
             item.Initialize(image);
         }

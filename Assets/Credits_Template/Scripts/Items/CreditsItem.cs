@@ -18,6 +18,9 @@ namespace FalmeStreamless.Credits
             if (hasPassedTopBorder())
                 this.pool.Release(this);
 
+			// if (hasPassedBottomBorder())
+			// 	GetComponentInParent<Staff>().DequeueItem();
+
             lastYPosition = rectTransform.position.y;
         }
 
@@ -28,7 +31,6 @@ namespace FalmeStreamless.Credits
 
         public bool hasPassedTopBorder()
         {
-
             bool previousPositionBelowTopBorder =
                 (lastYPosition - (GetHeight() / 2)) <= Screen.height;
             bool currentPositionAboveTopBorder =
@@ -36,6 +38,17 @@ namespace FalmeStreamless.Credits
 
             return previousPositionBelowTopBorder && currentPositionAboveTopBorder;
         }
+
+		public bool hasPassedBottomBorder()
+		{
+            // bool previousPositionBelowBottomBorder =
+            //     (lastYPosition - (GetHeight() / 2)) <= 0;
+            // bool currentPositionAboveBottomBorder =
+            //     (rectTransform.position.y - (GetHeight() / 2)) > 0;
+            //
+            // return previousPositionBelowBottomBorder && currentPositionAboveBottomBorder;
+            return (rectTransform.position.y - (GetHeight() / 2)) > 0;
+		}
 
         public float GetHeight() => rectTransform.sizeDelta.y;
     }
