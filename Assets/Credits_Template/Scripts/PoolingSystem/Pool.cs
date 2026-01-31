@@ -7,6 +7,7 @@ namespace FalmeStreamless.Credits
     {
         public static event Action<float> onRemovedItem;
 
+		public PoolItem<ItemTitle> title;
 		public PoolItem<ItemActor> actor;
 		public PoolItem<ItemCategory> category;
 		public PoolItem<ItemSpacing> spacing;
@@ -14,6 +15,7 @@ namespace FalmeStreamless.Credits
 
 		void Awake()
 		{
+			title.Initialize(this);
 			actor.Initialize(this);
 			category.Initialize(this);
 			spacing.Initialize(this);
@@ -25,6 +27,7 @@ namespace FalmeStreamless.Credits
             onRemovedItem?.Invoke(item.GetHeight());
             item.transform.SetParent(transform);
 
+            if (item is ItemTitle) title.FreeItem((ItemTitle)item);
             if (item is ItemActor) actor.FreeItem((ItemActor)item);
             if (item is ItemCategory) category.FreeItem((ItemCategory)item);
             if (item is ItemSpacing) spacing.FreeItem((ItemSpacing)item);

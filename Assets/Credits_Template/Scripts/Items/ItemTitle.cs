@@ -1,20 +1,20 @@
-using UnityEngine;
 using TMPro;
 
 namespace FalmeStreamless.Credits
 {
-    public class ItemTitle : MonoBehaviour
+    public class ItemTitle : CreditsItem
     {
-        private TextMeshProUGUI text;
+        private TextMeshProUGUI label;
 
-        void Awake()
+        protected override void Awake()
         {
-            text = GetComponent<TextMeshProUGUI>();
+			base.Awake();
+            label = GetComponent<TextMeshProUGUI>();
         }
 
         public void SetText(string newText)
         {
-            this.text.text = newText;
+            label.text = newText;
         }
     }
 }

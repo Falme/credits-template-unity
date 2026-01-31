@@ -18,14 +18,15 @@ namespace FalmeStreamless.Credits
         public void Initialize(CreditsData data)
         {
             Clear();
-            WriteTitle(data.title);
             StartCoroutine(WriteStaff(data.items));
         }
 
 		private void Update()
 		{
+			if(transform.childCount <= 0) return;
+
 			CreditsItem item = transform.GetChild(transform.childCount-1).GetComponent<CreditsItem>();
-			if(item.hasPassedBottomBorder())
+			if(item != null && item.hasPassedBottomBorder())
 				DequeueItem();
 		}
 
@@ -35,20 +36,13 @@ namespace FalmeStreamless.Credits
                 DestroyImmediate(transform.GetChild(0).gameObject);
         }
 
-        private void WriteTitle(string title)
-        {
-            if (string.IsNullOrEmpty(title)) return;
-
-            ItemTitle label = Instantiate(itemTitle, transform).GetComponent<ItemTitle>();
-            label.SetText(title);
-        }
-
         private IEnumerator WriteStaff(CreditsItemData[] items)
         {
             for (int item = 0; item < items.Length; item++)
             {
 				int indexCopy = item;
-                if (items[item].space)  orderItems.Enqueue(() => WriteSpacing(items[indexCopy].height));
+                if (items[item].title)  orderItems.Enqueue(() => WriteTitle(items[indexCopy].text));
+				else if (items[item].space)  orderItems.Enqueue(() => WriteSpacing(items[indexCopy].height));
                 else if (items[item].image)  orderItems.Enqueue(() => WriteImage(items[indexCopy]));
 				else if (items[item].category) 
 				{
@@ -78,6 +72,14 @@ namespace FalmeStreamless.Credits
 			if(orderItems.Count > 0)
 				orderItems.Dequeue().Invoke();
 		}
+
+        private void WriteTitle(string title)
+        {
+            if (string.IsNullOrEmpty(title)) return;
+
+            ItemTitle label = pool.title.GetItem(transform);
+            label.SetText(title);
+        }
 
         private void WriteCategory(CreditsItemData category)
         {
@@ -119,7 +121,6 @@ namespace FalmeStreamless.Credits
 
         private void WriteImage(CreditsItemData image)
         {
-			Debug.Log(image);
             ItemImage item = pool.image.GetItem(transform);
             item.Initialize(image);
         }

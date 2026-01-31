@@ -1,8 +1,11 @@
 {
 	"version": "0.0.1",
-	"velocity": 100.0,
-	"title": "Credits Template: \nThe Template for your credits",
+	"velocity": 200.0,
 	"items": [
+		{
+			"title": true,
+			"text": "Credits Template: \nThe Template for your credits"
+		},
 		{
 			"space": true,
 			"height": 100.0
@@ -35,6 +38,7 @@
 			"actors": [
 				"Alex Arroyo",
 				"Danilo Cavedon",
+				"Ruan Lima",
 				"And everyone who shared this project!"
 			]
 		},

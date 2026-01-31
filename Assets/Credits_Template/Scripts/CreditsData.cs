@@ -5,13 +5,13 @@ namespace FalmeStreamless.Credits
     {
         public string version;
         public float velocity;
-        public string title;
         public CreditsItemData[] items;
     }
 
     [System.Serializable]
     public class CreditsItemData
     {
+        public bool title;
         public bool category;
         public bool space;
         public bool image;
