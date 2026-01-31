@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 namespace FalmeStreamless.Credits
 {
+	[RequireComponent(typeof(CanvasScaler))]
     public class Credits : MonoBehaviour
     {
         public static event Action OnCreditsFinished;
@@ -35,16 +36,16 @@ namespace FalmeStreamless.Credits
                 );
         }
 
+        private CreditsData GetJsonData()
+        {
+            return JsonConvert.DeserializeObject<CreditsData>(creditsJSON.text);
+        }
+
         void CreditEndReached(float difference)
         {
             scroll.StopScrolling();
             scroll.ScrollAdd(-difference); // Fix Overshot position
             OnCreditsFinished?.Invoke();
-        }
-
-        private CreditsData GetJsonData()
-        {
-            return JsonConvert.DeserializeObject<CreditsData>(creditsJSON.text);
         }
     }
 }
