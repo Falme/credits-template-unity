@@ -11,10 +11,7 @@ namespace FalmeStreamless.Credits
     [System.Serializable]
     public class CreditsItemData
     {
-        public bool title;
-        public bool category;
-        public bool space;
-        public bool image;
+        public string type;
         public string path;
         public string text;
         public float height;

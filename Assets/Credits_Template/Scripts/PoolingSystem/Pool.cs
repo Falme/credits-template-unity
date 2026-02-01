@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace FalmeStreamless.Credits
 {
@@ -7,31 +8,47 @@ namespace FalmeStreamless.Credits
     {
         public static event Action<float> onRemovedItem;
 
-		public PoolItem<ItemTitle> title;
-		public PoolItem<ItemActor> actor;
-		public PoolItem<ItemCategory> category;
-		public PoolItem<ItemSpacing> spacing;
-		public PoolItem<ItemImage> image;
+		public List<PoolItem> itemList = new List<PoolItem>();
 
-		void Awake()
+		private Dictionary<string, Stack<CreditsItem>> freeItems = new Dictionary<string, Stack<CreditsItem>>();
+
+		public CreditsItem GetItem(string id, Transform newParent)
 		{
-			title.Initialize(this);
-			actor.Initialize(this);
-			category.Initialize(this);
-			spacing.Initialize(this);
-			image.Initialize(this);
+			if(!freeItems.ContainsKey(id))
+				freeItems.Add(id, new Stack<CreditsItem>());
+
+		    if (freeItems[id].Count <= 0) Add(id);
+
+		    CreditsItem item = freeItems[id].Pop();
+		    item.transform.SetParent(newParent);
+		    return item;
 		}
 
-        public void Release(CreditsItem item)
+		private void Add(string id)
+		{
+		    CreditsItem item = Instantiate(GetPrefabById(id), transform).GetComponent<CreditsItem>();
+		    item.SetPool(this);
+			item.SetId(id);
+		    freeItems[id].Push(item);
+		}
+
+        public void Release(string id, CreditsItem item)
         {
             onRemovedItem?.Invoke(item.GetHeight());
             item.transform.SetParent(transform);
-
-            if (item is ItemTitle) title.FreeItem((ItemTitle)item);
-            if (item is ItemActor) actor.FreeItem((ItemActor)item);
-            if (item is ItemCategory) category.FreeItem((ItemCategory)item);
-            if (item is ItemSpacing) spacing.FreeItem((ItemSpacing)item);
-            if (item is ItemImage) image.FreeItem((ItemImage)item);
+			freeItems[id].Push(item);
         }
+
+		private CreditsItem GetPrefabById(string id)
+		{
+			for(int a=0; a<itemList.Count; a++)
+			{
+				if(id.Equals(itemList[a].id))
+					return itemList[a].prefab;
+			}
+			
+			Debug.LogError("ID prefab not found in Pool list");
+			return null; 
+		}
     }
 }

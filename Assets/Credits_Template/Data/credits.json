@@ -3,24 +3,24 @@
 	"velocity": 200.0,
 	"items": [
 		{
-			"title": true,
+			"type": "title",
 			"text": "Credits Template: \nThe Template for your credits"
 		},
 		{
-			"space": true,
+			"type": "space",
 			"height": 100.0
 		},
 		{
-			"image": true, 
+			"type": "image", 
 			"path": "Credits/example_image.png", 
 			"height": 400
 		},
 		{
-			"space": true,
+			"type": "space",
 			"height": 100.0
 		},
 		{
-			"category": true,
+			"type": "category",
 			"text": "Created By",
 			"categorySpacing": 10.0,
 			"actorsSpacing": 10.0,
@@ -29,11 +29,11 @@
 			]
 		},
 		{
-			"space": true,
+			"type": "space",
 			"height": 100.0
 		},
 		{
-			"category": true,
+			"type": "category",
 			"text": "Special Thanks",
 			"actors": [
 				"Alex Arroyo",
@@ -43,11 +43,11 @@
 			]
 		},
 		{
-			"space": true,
+			"type": "space",
 			"height": 100.0
 		},
 		{
-			"category": true,
+			"type": "category",
 			"text": "Background Image",
 			"actors": [
 				"Mixtapes",
@@ -55,11 +55,11 @@
 			]
 		},
 		{
-			"space": true,
+			"type": "space",
 			"height": 100.0
 		},
 		{
-			"category": true,
+			"type": "category",
 			"text": "Image Not Found Author",
 			"actors": [
 				"Jordan Irwin (AntumDeluge)",

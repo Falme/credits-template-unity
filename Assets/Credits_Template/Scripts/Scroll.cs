@@ -26,11 +26,10 @@ namespace FalmeStreamless.Credits
             Pool.onRemovedItem -= RemovedItem;
         }
 
-
         void Update()
         {
             if (isScrolling)
-                ScrollCredits(Time.deltaTime);
+                ScrollCredits();
         }
 
         public void Initialize(Vector2 resolution, CreditsData data)
@@ -51,9 +50,9 @@ namespace FalmeStreamless.Credits
             rectTransform.anchoredPosition = new Vector2(0, -resolution.y);
         }
 
-        public void ScrollCredits(float delta)
+        public void ScrollCredits()
         {
-            ScrollAdd(velocity * delta);
+            ScrollAdd(velocity * Time.deltaTime);
         }
 
         public void StartScrolling()

@@ -7,6 +7,7 @@ namespace FalmeStreamless.Credits
         protected RectTransform rectTransform;
         protected Pool pool;
         protected float lastYPosition;
+		protected string id;
 
         protected virtual void Awake()
         {
@@ -16,7 +17,7 @@ namespace FalmeStreamless.Credits
         protected virtual void Update()
         {
             if (hasPassedTopBorder())
-                this.pool.Release(this);
+                this.pool.Release(id, this);
 
             lastYPosition = rectTransform.position.y;
         }
@@ -25,6 +26,11 @@ namespace FalmeStreamless.Credits
         {
             this.pool = pool;
         }
+
+		public void SetId(string id)
+		{
+			this.id = id;
+		}
 
         public bool hasPassedTopBorder()
         {
