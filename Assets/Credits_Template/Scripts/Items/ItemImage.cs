@@ -15,7 +15,7 @@ namespace FalmeStreamless.Credits
             layoutElement = GetComponent<LayoutElement>();
         }
 
-        public void Initialize(CreditsItemData image)
+        public override void Initialize(CreditsItemData image)
         {
             SetImage(image.path);
             SetHeight(image.height);

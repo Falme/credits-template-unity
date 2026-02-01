@@ -12,7 +12,7 @@ namespace FalmeStreamless.Credits
             label = GetComponent<TextMeshProUGUI>();
         }
 
-        public void Initialize(CreditsItemData category)
+        public override void Initialize(CreditsItemData category)
         {
             SetText(category.text);
         }
