@@ -41,24 +41,10 @@ namespace FalmeStreamless.Credits
 				int item = a;
 				string id = items[item].type.ToLower();
 
-				switch(id)
-				{
-					case "category":
-						orderItems.Enqueue(() => WriteCategory(items[item]));
+				orderItems.Enqueue(() => WriteItem(id, items[item]));
 
-						for (int b = 0; b < items[item].actors.Length; b++)
-						{
-							int actor = b;
-							orderItems.Enqueue(() => WriteActor(items[item].actors[actor]));
-						}
-						break;
-					default:
-						orderItems.Enqueue(() => WriteItem(id, items[item]));
-						break;
-				}
+				if(item == 0) DequeueItem();
 
-				if(item == 0) 
-					DequeueItem();
                 yield return null;
             }
         }
@@ -68,26 +54,6 @@ namespace FalmeStreamless.Credits
 			if(orderItems.Any())
 				orderItems.Dequeue().Invoke();
 		}
-
-        private void WriteCategory(CreditsItemData category)
-        {
-            ItemCategory label = (ItemCategory)pool.GetItem("category", transform);
-
-            label.Initialize(category);
-        }
-
-		public void EnqueueActor(string actor)
-		{
-			orderItems.Enqueue(() => WriteActor(actor));
-		}
-
-        private void WriteActor(string actor)
-        {
-            if (string.IsNullOrEmpty(actor)) return;
-
-            ItemActor label = (ItemActor)pool.GetItem("actor", transform);
-            label.SetText(actor);
-        }
 
 		private void WriteItem(string id, CreditsItemData data)
 		{

@@ -22,10 +22,7 @@ namespace FalmeStreamless.Credits
             lastYPosition = rectTransform.position.y;
         }
 
-		public virtual void Initialize(CreditsItemData data)
-		{
-
-		}
+		public virtual void Initialize(CreditsItemData data) { }
 
         public void SetPool(Pool pool)
         {
