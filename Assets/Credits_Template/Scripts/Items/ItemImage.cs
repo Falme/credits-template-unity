@@ -7,12 +7,14 @@ namespace FalmeStreamless.Credits
     {
         private Image image;
         private LayoutElement layoutElement;
+		private Sprite failsafeImage;
 
         protected override void Awake()
         {
             base.Awake();
             image = GetComponent<Image>();
             layoutElement = GetComponent<LayoutElement>();
+			this.failsafeImage = image.sprite;
         }
 
         public override void Initialize(CreditsItemData image)
@@ -36,6 +38,7 @@ namespace FalmeStreamless.Credits
             catch (System.Exception)
             {
                 string result = string.Format("Credits Template: Not possible to read image at {0}", streamingPath);
+				image.sprite = this.failsafeImage;
                 Debug.LogError(result);
             }
         }
