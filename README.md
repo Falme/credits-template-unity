@@ -4,7 +4,7 @@
 
 # Credits Template : Unity Edition
 
-Template para a interface de créditos para seu jogo (na Unity) com as informações carregadas pelo JSON.
+Template para a interface de créditos pro seu jogo (na Unity) carregadas por JSON.
 
 ---
 
@@ -20,23 +20,17 @@ Baixe a versão mais recente do pacote `Credits-Unity-x-x-x.unitypackage` na [P�
 - Clicar duas vezes no arquivo unitypackage, ou
 - Na Unity, acesse `Assets > Import Package > Custom Package` e selecione o arquivo unitypackage.
 
-Você deverá ter uma nova pasta no seguinte caminho: `Assets/Credits_Template`.
+Você deverá ter duas novas pastas nos seguintes caminhos: 
+- `Assets/Credits_Template`
+- `Assets/StreamingAssets/Credits`
 
 Agora, se você quiser um exemplo de como funciona, tenho uma cena em `Credits_Template/Scenes/Credits_Example.unity` (caso prefira aprender por meio de exemplos).
 
-De qualquer forma, o modelo pode ser encontrado em `Credits_Template/prefabs/Credits_Canvas.prefab`, este é o modelo principal. Para usá-lo, basta adicioná-lo como um Canvas ou como filho de um Canvas gameobject, pois o modelo é 100% interface Canvas/UI.
+De qualquer forma, o modelo pode ser encontrado em `Credits_Template/prefabs/Credits_Canvas.prefab`, este é o modelo principal. Para usá-lo, basta arrastá-lo para uma cena ou como filho de um Canvas gameobject, pois o modelo é 100% interface Canvas/UI.
 
 Para alterar o conteúdo dos créditos, você precisará modificar o arquivo JSON em `Credits_Template/Data/credits.json`. Decidi colocar as informações em um arquivo JSON para que não apenas os desenvolvedores, mas qualquer membro da equipe, possa modificá-lo.
 
 > **IMPORTANTE**: As dimensões de TUDO são definidas pelo componente "Canvas Scaler" no Canvas. Você deve definir uma Reference Resolution para o seu jogo e o tamanho da fonte. 
-
-Para explicar rapidamente cada campo:
-
-- title: Título da cena de créditos, normalmente o nome do jogo
-- category: Categoria ou nome do cargo (exemplo: Produtores)
-- actors: Nome da pessoa a ser listada (exemplo: Jane Doe)
-- spacing : Margem/espaço entre nomes e funções
-- image: Imagens no meio dos créditos, como logos e fotos.
 
 Na próxima seção, explicaremos em mais detalhes a estrutura JSON.
 
@@ -46,43 +40,47 @@ Vou escrever um exemplo de créditos e explicar cada um deles com mais detalhes.
 
 ```json
 {
-	"version": "0.1.0",
+	"version": "0.0.1",
 	"velocity": 100.0,
-	"title": "Super Jump Game 2: \nThe Electric Boogaloo",
 	"items": [
 		{
-			"image": true,
-			"path": "credits-template/sprites/example_image.png",
-			"height": 400.0
+			"type": "title",
+			"text": "Super Jump Game 2: \nThe Electric Boogaloo"
 		},
 		{
-			"space": true,
-			"height": 400.0
+			"type": "space",
+			"height": 100.0
 		},
 		{
-			"category": true,
-			"text": "Director",
-			"categorySpacing": 100.0,
-			"actorsSpacing": 50.0,
+			"type": "image", 
+			"path": "Credits/example_image.png", 
+			"height": 400
+		},
+		{
+			"type": "category",
+			"text": "Created By"
+		},
+		{
+			"type": "actor",
 			"actors": [
-				"John Doe",
-				"Jane Doe",
-				"Oscar Garlic"
+				"Falme Streamless"
 			]
 		},
 		{
-			"space": true,
-			"height": 200.0
+			"type": "space",
+			"height": 100.0
 		},
 		{
-			"category": true,
-			"text": "Producers",
-			"categorySpacing": 100.0,
-			"actorsSpacing": 10.0,
+			"type": "category",
+			"text": "Special Thanks"
+		},
+		{
+			"type": "actor",
 			"actors": [
-				"John Doe",
-				"Jane Doe",
-				"Oscar Garlic"
+				"Alex Arroyo",
+				"Danilo Cavedon",
+				"Ruan Lima",
+				"And everyone who shared this project!"
 			]
 		}
 	]
@@ -91,25 +89,15 @@ Vou escrever um exemplo de créditos e explicar cada um deles com mais detalhes.
 
 Explicaremos cada campo de cima para baixo.
 
+- version: Se você quiser acompanhar a versão dos créditos do seu jogo (não aparece na tela)
 - velocity: Velocidade de rolagem dos créditos, velocidade de movimento
-- title: Primeiro campo dos créditos, normalmente o nome do jogo
 - items: Array contendo todos os objetos que podem ser adicionados aos créditos
+	- title: Texto especial, geralmente o primeiro campo dos créditos e normalmente o nome do jogo
 	- image: Uma imagem para ser adicionada aos créditos
 		- path: Endereço/caminho para a imagem (base é "Assets/StreamingAssets/")
 		- height: altura da imagem a ser exibida. A largura é proporcional ao tamanho original.
     - space: espaço vazio, uma margem entre uma label e outra label
 		- height: altura do espaço a ser exibido
     - category: o título do cargo
-		- categorySpacing: Espaço vazio entre o cargo e os nomes
-		- actorsSpacing: Espaço vazio entre os nomes e nomes
-		- actors: Nomes daqueles que trabalharam no projeto na função especificada acima.
-
-## Newtonsoft JSON DLL
-
-Talvez você receba um erro relacionado ao JSON Newtonsoft. Isso pode acontecer por três motivos:
-
-- Você não importou a pasta do plugin ao importar o unitypackage, faltando o arquivo DLL Newtonsoft.JSON.
-- Você importou a pasta do plugin, mas tem outro arquivo Newtonsoft.JSON.dll no seu projeto, o que está causando um conflito.
-- O CSharpMonoBehaviour não está encontrando a DLL. Se você estiver usando Assembly Definitions, basta adicionar uma referência do plugin Newtonsoft ao seu arquivo Asmdef.
-
-Devido a problemas com a leitura e análise de JSON, injetei o Newtonsoft.JSON no pacote unity.
+	- actor: Nomes daqueles que trabalharam no projeto na função especificada acima.
+		- actors: Array de nomes. Tente não colocar muitos nomes em um único array, divida para melhor desempenho.
