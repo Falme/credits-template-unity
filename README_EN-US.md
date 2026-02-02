@@ -101,3 +101,15 @@ From top to bottom, we will explain each field.
     - category : the role title
 	- actor : Names, those who worked in the project at the specified role above
 		- actors : Array of names, try not putting too many names in one array, divide for better performance
+
+## Newtonsoft.JSON Errors
+
+This project requires Newtonsoft.JSON, At the moment it cannot be inside the unitypackage, so you will need to install it using package manager. It's simple:
+
+1. Go to `Window > Package Management > Package Manager` to open Package Manager
+2. Click the Plus Sign `+ > Install package by name...`
+3. Write the Newtonsoft address in the name field:
+	- `com.unity.nuget.newtonsoft-json@3.0`
+4. Wait for the installation 
+
+If the Signature reproduces an error, update your Unity Version, this will solve the problem.

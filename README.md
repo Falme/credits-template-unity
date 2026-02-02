@@ -101,3 +101,15 @@ Explicaremos cada campo de cima para baixo.
     - category: o título do cargo
 	- actor: Nomes daqueles que trabalharam no projeto na função especificada acima.
 		- actors: Array de nomes. Tente não colocar muitos nomes em um único array, divida para melhor desempenho.
+
+## Erros no Newtonsoft.JSON
+
+Este projeto requer o Newtonsoft.JSON. No momento, ele não está incluído no pacote unitypackage, então você precisará instalá-lo usando o Package Manager. É simples:
+
+1. Vá em `Window > Package Management > Package Manager` pra abrir o Package Manager
+2. Clique no Sinal de Mais `+ > Install package by name...`
+3. Digite o endereço da Newtonsoft no campo name:
+	- `com.unity.nuget.newtonsoft-json@3.0`
+4. Aguarde a instalação. 
+
+Se a Signature reproduzir um erro, atualize sua versão do Unity. Isso resolverá o problema.
