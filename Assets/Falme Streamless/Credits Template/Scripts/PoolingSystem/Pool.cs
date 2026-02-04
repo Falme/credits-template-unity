@@ -8,7 +8,7 @@ namespace FalmeStreamless.Credits
     {
         public static event Action<float> onRemovedItem;
 
-		public List<PoolItem> itemList = new List<PoolItem>();
+		public ListItemsScriptableObject itemList; 
 
 		private Dictionary<string, Stack<CreditsItem>> freeItems = new Dictionary<string, Stack<CreditsItem>>();
 
@@ -41,10 +41,10 @@ namespace FalmeStreamless.Credits
 
 		private CreditsItem GetPrefabById(string id)
 		{
-			for(int a=0; a<itemList.Count; a++)
+			for(int a=0; a<itemList.items.Count; a++)
 			{
-				if(id.Equals(itemList[a].id))
-					return itemList[a].prefab;
+				if(id.Equals(itemList.items[a].id))
+					return itemList.items[a].prefab;
 			}
 			
 			Debug.LogError("ID prefab not found in Pool list");
