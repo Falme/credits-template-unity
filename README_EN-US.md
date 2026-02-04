@@ -109,7 +109,7 @@ This project requires Newtonsoft.JSON, At the moment it cannot be inside the uni
 1. Go to `Window > Package Management > Package Manager` to open Package Manager
 2. Click the Plus Sign `+ > Install package by name...`
 3. Write the Newtonsoft address in the name field:
-	- `com.unity.nuget.newtonsoft-json@3.0`
+	- `com.unity.nuget.newtonsoft-json`
 4. Wait for the installation 
 
 If the Signature reproduces an error, update your Unity Version, this will solve the problem.
