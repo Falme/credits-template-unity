@@ -13,12 +13,12 @@
 		- Go to `Window > Package Management > Package Manager` to open Package Manager
 		- Click the Plus Sign `+ > Install package by name...`
 		- Write the Newtonsoft address in the name field: `com.unity.nuget.newtonsoft-json` and wait to finish importing
-4. Drag and Drop the prefab at `Credits_Template/prefabs/Credits_Canvas.prefab` to your scene or into a predefined Canvas
+4. Drag and Drop the prefab at `Assets/Falme Streamless/Credits Template/prefabs/Credits_Canvas.prefab` to your scene or into a predefined Canvas
 	- ![Drag_and_drop_to_scene](./credits-template-doc-1.jpeg)
 
 ## Configurations
 
-All the configurations is predefined into the prefab OR can be modified in the JSON data found at `Credits_Template/Data/credits.json`.
+All the configurations is predefined into the prefab OR can be modified in the JSON data found at `Assets/Falme Streamless/Credits Template/Data/credits.json`.
 
 The JSON file can configure quickly your information inside the credits and the velocity of it.
 The Prefabs can configure the visuals of your credits scene, changing fonts, size, colors and etc.
@@ -61,7 +61,7 @@ The type `category` is a label of text for the roles of the team, usually a head
 ```json
 {
 	"type": "category",
-	"text": "The role of those who worked in the game (such as Producer, QA, etc)"
+	"text": "The role of those who worked in the game (Producer, QA)"
 }
 ```
 
@@ -159,6 +159,42 @@ The method `Initialize(CreditsItemData data)` is called from the pooling system,
 
 ### 3. Adding Your Prefab to the List
 
+All the item prefabs are contained inside a ScriptableObject at `Assets/Falme Streamless/Credits Template/Scripts/ScriptableObject/ListItems`. Just add your new item to the list with the following parameters:
+
+- id : unique name for your item, must be in lowercase and it should match the json `type` field.
+- prefab : the prefab of your item
+
+With this, the pooling system is ready to store and use your new item.
+
+### 4. Adding the Item to the JSON Data
+
+After setting up your new Item, it's time to test with the data. Open the JSON data file at `Assets/Falme Streamless/Credits Template/Data/credits.json` and add your new item to the file, for example, if your item id is called "subcategory" it will looks like:
+
+```json
+{
+	"type" : "subcategory",
+	"text" : "the text for your subcategory"
+}
+```
+
+If you need to add a new property that is not in the JSON data, like a `"video" : "Address/Video.mp4"` for example, we must change the `Assets/Falme Streamless/Credits Template/Scripts/CreditsData.cs`. 
+
+The `CreditsData` class is a JSON parser, to add a property like "video", we should change the file as follows:
+
+```cs
+public class CreditsItemData
+{
+	public string video; //  <---- Your new property
+	public string type;
+	public string path;
+	public string text;
+	...
+	public float actorsSpacing;
+}
+```
+
+With that, your new item should be working as expected.
+
 
 ## Known Problems/Errors/Bugs
 
@@ -168,7 +204,3 @@ The method `Initialize(CreditsItemData data)` is called from the pooling system,
 ## Found a Bug or have a Feedback?
 
 I do not have a proper place for that, for informal conversation reach me at my [Bluesky](https://bsky.app/profile/falme.com.br), if it's technical things, open an issue in the [GitHub](https://github.com/Falme/credits-template-unity/issues) repository page, so we all could discuss that.
-
-## Class Reference
-
-
